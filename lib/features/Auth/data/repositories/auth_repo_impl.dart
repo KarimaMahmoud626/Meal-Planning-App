@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meal_planning_app/features/Auth/domain/models/user_model.dart';
 import 'package:meal_planning_app/features/Auth/domain/repositiories/auth_repo.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthRepoImpl extends AuthRepo {
@@ -33,26 +33,26 @@ class AuthRepoImpl extends AuthRepo {
     }
   }
 
-  // @override
-  // Future<Either<Exception, UserCredential>> loginWithFacebook() async {
-  //   // Trigger the sign-in flow
-  //   try {
-  //     final LoginResult loginResult = await FacebookAuth.instance.login();
+  @override
+  Future<Either<Exception, UserCredential>> loginWithFacebook() async {
+    // Trigger the sign-in flow
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  //     // Create a credential from the access token
-  //     final OAuthCredential facebookAuthCredential =
-  //         FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+      // Create a credential from the access token
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
-  //     // Once signed in, return the UserCredential
-  //     return Right(
-  //       await FirebaseAuth.instance.signInWithCredential(
-  //         facebookAuthCredential,
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     return Left(Exception('Something went wrong'));
-  //   }
-  // }
+      // Once signed in, return the UserCredential
+      return Right(
+        await FirebaseAuth.instance.signInWithCredential(
+          facebookAuthCredential,
+        ),
+      );
+    } catch (e) {
+      return Left(Exception('Something went wrong'));
+    }
+  }
 
   @override
   Future<Either<Exception, UserCredential>> loginWithGoogle() async {
@@ -76,11 +76,5 @@ class AuthRepoImpl extends AuthRepo {
     } catch (e) {
       return Left(Exception('Something went wrong while google sign in'));
     }
-  }
-
-  @override
-  Future<Either<Exception, UserCredential>> loginWithFacebook() {
-    // TODO: implement loginWithFacebook
-    throw UnimplementedError();
   }
 }
