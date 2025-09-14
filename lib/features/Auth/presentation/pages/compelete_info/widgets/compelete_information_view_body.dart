@@ -8,19 +8,21 @@ class CompeleteInformationViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          VerticalSpace(10),
-          CompeleteInfoItem(text: 'Enter Your Name'),
-          VerticalSpace(2),
-          CompeleteInfoItem(text: 'Enter Your Phone Number'),
-          VerticalSpace(2),
-          CompeleteInfoItem(text: 'Enter Your Address', maxLines: 5),
-          VerticalSpace(5),
-          CustomGeneralButton(text: 'Login'),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            VerticalSpace(10),
+            CompeleteInfoItem(text: 'Enter Your Name'),
+            VerticalSpace(2),
+            CompeleteInfoItem(text: 'Enter Your Phone Number'),
+            VerticalSpace(2),
+            CompeleteInfoItem(text: 'Enter Your Address', maxLines: 5),
+            VerticalSpace(5),
+            CustomGeneralButton(text: 'Login'),
+          ],
+        ),
       ),
     );
   }

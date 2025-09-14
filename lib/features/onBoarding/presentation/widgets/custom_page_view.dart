@@ -12,19 +12,25 @@ class CustomPageView extends StatelessWidget {
       controller: pageController,
       children: [
         PageViewItem(
-          title: 'E Shopping',
-          subTitle: 'Explore Top Organic Fruits & Grap them',
-          image: 'assets/images/onboarding1.png',
+          title: 'Welcome to PlaniShop',
+          subTitle: 'Plan meals & shop smarter in one place.',
+          image: 'assets/images/onboarding1.jpg',
         ),
         PageViewItem(
-          title: 'Delivery on the way',
-          subTitle: 'Got your Order by Speed Delivery',
-          image: 'assets/images/onboarding2.png',
+          title: 'Smart Grocery Lists',
+          subTitle:
+              'Add ingredients and automatically \n save them in an organized list.',
+          image: 'assets/images/onboarding2.jpg',
         ),
         PageViewItem(
-          title: 'Delivery Arrived',
-          subTitle: 'Order Arrived at your Place',
-          image: 'assets/images/onboarding3.png',
+          title: 'Daily Meal Suggestions',
+          subTitle: 'Discover new recipes tailored to your taste and schedule.',
+          image: 'assets/images/onboarding3.jpg',
+        ),
+        PageViewItem(
+          title: 'Plan Your Weekly Meals',
+          subTitle: 'Waste less food and stay organized.',
+          image: 'assets/images/onboarding4.jpg',
         ),
       ],
     );

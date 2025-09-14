@@ -41,19 +41,26 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
         Visibility(
           visible:
               pageController!.hasClients
-                  ? (pageController!.page == 2 ? false : true)
+                  ? (pageController!.page == 3 ? false : true)
                   : true,
           child: Positioned(
             top: SizeConfig.defaultSize! * 10,
             right: 32,
-            child: Text(
-              'Skip',
-              style: TextStyle(
-                fontSize: 14,
-                color: const Color(0xff898989),
-                fontWeight: FontWeight.bold,
+            child: TextButton(
+              onPressed: () {
+                if (pageController!.page! < 3) {
+                  pageController!.jumpToPage(3);
+                }
+              },
+              child: Text(
+                'Skip',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: const Color(0xff898989),
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
           ),
         ),
@@ -63,7 +70,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
           right: SizeConfig.defaultSize! * 10,
           child: CustomGeneralButton(
             onTap: () {
-              if (pageController!.page! < 2) {
+              if (pageController!.page! < 3) {
                 pageController?.nextPage(
                   duration: Duration(milliseconds: 500),
                   curve: Curves.easeIn,
@@ -78,7 +85,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
             },
             text:
                 pageController!.hasClients
-                    ? pageController!.page == 2
+                    ? pageController!.page == 3
                         ? 'Get Started'
                         : 'Next'
                     : 'Next',

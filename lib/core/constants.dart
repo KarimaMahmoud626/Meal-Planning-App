@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const kMainColor = Color(0xFF69A03A);
+const kMainColor = Color(0xFF4EAE89);
 const kLogoImage = 'assets/images/logo.png';
 
 const kName = 'name';

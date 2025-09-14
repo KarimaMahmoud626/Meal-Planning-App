@@ -24,7 +24,7 @@ class LoginViewBody extends StatelessWidget {
           ),
         ),
         Text(
-          'Fruit Market',
+          'PlaniShop',
           style: TextStyle(
             fontSize: 42,
             color: kMainColor,

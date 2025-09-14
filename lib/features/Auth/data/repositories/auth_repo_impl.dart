@@ -15,6 +15,7 @@ class AuthRepoImpl extends AuthRepo {
     UserModel? user,
   }) async {
     try {
+      final uid = FirebaseAuth.instance.currentUser!.uid;
       CollectionReference users = FirebaseFirestore.instance.collection(
         'users',
       );
@@ -25,7 +26,7 @@ class AuthRepoImpl extends AuthRepo {
         address: address,
       );
 
-      await users.add(userModel.toJson());
+      await users.doc(uid).set(userModel.toJson());
 
       return Right(userModel);
     } on Exception catch (e) {
@@ -58,11 +59,11 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Exception, UserCredential>> loginWithGoogle() async {
     // Trigger the authentication flow
     try {
-      final GoogleSignInAccount? googleUser =
-          await GoogleSignIn.instance.authenticate();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth = googleUser!.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
 
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
