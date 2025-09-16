@@ -4,22 +4,27 @@ import 'package:meal_planning_app/features/Auth/domain/repositiories/auth_repo.d
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final AuthRepo _authRepo;
+  final AuthRepo? _authRepo;
 
   AuthCubit(this._authRepo) : super(AuthInitial());
 
   Future<void> loginWithGoogle() async {
-    emit(AuthLoading());
-    final result = await _authRepo.loginWithGoogle();
-    result.fold(
-      (l) => emit(AuthFailure(l.toString())),
-      (r) => emit(AuthSuccess()),
-    );
+    try {
+      emit(AuthLoading());
+      final result = await _authRepo!.loginWithGoogle();
+      result.fold(
+        (l) => emit(AuthFailure(l.toString())),
+        (r) => emit(AuthSuccess()),
+      );
+    } catch (e, st) {
+      print('loginWithGoogle error: $e\n$st');
+      emit(AuthFailure(e.toString()));
+    }
   }
 
   Future<void> loginWithFacebook() async {
     emit(AuthLoading());
-    final result = await _authRepo.loginWithFacebook();
+    final result = await _authRepo!.loginWithFacebook();
     result.fold(
       (l) => emit(AuthFailure(l.toString())),
       (r) => emit(AuthSuccess()),
@@ -33,7 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
     String address,
   ) async {
     emit(AuthLoading());
-    final result = await _authRepo.compeleteInformation(
+    final result = await _authRepo!.compeleteInformation(
       name: name,
       phoneNumber: phoneNumber,
       address: address,
@@ -41,7 +46,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     result.fold(
       (l) => emit(AuthFailure(l.toString())),
-      (r) => emit(AuthSuccess()),
+      (r) => emit(CompeleteInfoSuccess()),
     );
   }
 }

@@ -77,3 +77,43 @@ class CustomLoginWithButton extends StatelessWidget {
     );
   }
 }
+
+class CustomLoginButton extends StatelessWidget {
+  const CustomLoginButton({super.key, this.onTap, this.isLoading = false});
+
+  final void Function()? onTap;
+
+  final bool isLoading;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 60,
+        decoration: BoxDecoration(
+          color: kMainColor,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Center(
+          child:
+              isLoading
+                  ? SizedBox(
+                    height: 24,
+                    width: 24,
+                    child: CircularProgressIndicator(color: Colors.black),
+                  )
+                  : Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+        ),
+      ),
+    );
+  }
+}

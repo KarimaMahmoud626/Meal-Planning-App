@@ -6,4 +6,4 @@ const kLogoImage = 'assets/images/logo.png';
 const kName = 'name';
 const kAddress = 'address';
 const kEmail = 'email';
-const kPhoneNumber = 'phone_number';
+const kPhoneNumber = 'phoneNumber';

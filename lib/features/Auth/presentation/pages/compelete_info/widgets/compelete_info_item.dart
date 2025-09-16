@@ -8,11 +8,19 @@ class CompeleteInfoItem extends StatelessWidget {
     required this.text,
     this.keyboardType,
     this.maxLines,
+    this.onChanged,
+    this.onSaved,
+    this.icon,
+    this.validator,
   });
 
   final String text;
   final TextInputType? keyboardType;
   final int? maxLines;
+  final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
+  final IconData? icon;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,13 @@ class CompeleteInfoItem extends StatelessWidget {
           textAlign: TextAlign.left,
         ),
         VerticalSpace(1.5),
-        CustomTextField(keyboardType: keyboardType, maxLines: maxLines),
+        CustomTextField(
+          keyboardType: keyboardType,
+          maxLines: maxLines,
+          onSaved: onSaved,
+          onChanged: onChanged,
+          icon: icon,
+        ),
       ],
     );
   }

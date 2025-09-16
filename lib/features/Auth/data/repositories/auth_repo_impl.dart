@@ -15,12 +15,14 @@ class AuthRepoImpl extends AuthRepo {
     UserModel? user,
   }) async {
     try {
-      final uid = FirebaseAuth.instance.currentUser!.uid;
+      final currentUser = FirebaseAuth.instance.currentUser!;
+      final uid = currentUser.uid;
+      final email = currentUser.email;
       CollectionReference users = FirebaseFirestore.instance.collection(
         'users',
       );
       UserModel userModel = UserModel(
-        email: user!.email,
+        email: email!,
         name: name,
         phoneNumber: phoneNumber,
         address: address,
@@ -37,12 +39,15 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Exception, UserCredential>> loginWithFacebook() async {
     // Trigger the sign-in flow
+    print('entering facebook sign in');
     try {
       final LoginResult loginResult = await FacebookAuth.instance.login();
 
       // Create a credential from the access token
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+      print('compelete faceook sign in');
 
       // Once signed in, return the UserCredential
       return Right(
@@ -59,6 +64,7 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Exception, UserCredential>> loginWithGoogle() async {
     // Trigger the authentication flow
     try {
+      print('entering google sign in');
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       // Obtain the auth details from the request
@@ -68,8 +74,9 @@ class AuthRepoImpl extends AuthRepo {
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
       );
-
+      print('compelete google sign in');
       // Once signed in, return the UserCredential
       return Right(
         await FirebaseAuth.instance.signInWithCredential(credential),

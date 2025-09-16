@@ -4,7 +4,7 @@ class UserModel {
   final String? name;
   final String? address;
   final String? phoneNumber;
-  final String email;
+  final String? email;
 
   UserModel({this.name, this.address, this.phoneNumber, required this.email});
 
