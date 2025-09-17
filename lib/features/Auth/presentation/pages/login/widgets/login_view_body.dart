@@ -21,7 +21,7 @@ class LoginViewBody extends StatelessWidget {
         if (state is AuthSuccess) {
           Get.to(
             () => BlocProvider.value(
-              value: context.read<AuthCubit>(), // نفس ال instance
+              value: context.read<AuthCubit>(),
               child: CompeleteInformationView(),
             ),
             duration: const Duration(milliseconds: 500),
