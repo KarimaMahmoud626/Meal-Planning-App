@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/home_view.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:meal_planning_app/features/splash/presentation/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +15,9 @@ class MealPlanningApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(debugShowCheckedModeBanner: false, home: HomeView());
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SplashView(),
+    );
   }
 }
