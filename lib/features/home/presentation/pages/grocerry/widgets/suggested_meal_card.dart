@@ -13,9 +13,10 @@ class SuggestedMealCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.defaultSize! * 22,
+      height: SizeConfig.defaultSize! * 20,
       width: SizeConfig.defaultSize! * 25,
       child: Card(
+        color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,7 +33,7 @@ class SuggestedMealCard extends StatelessWidget {
                       ),
                       child: Image.asset(
                         imagePath!,
-                        height: SizeConfig.defaultSize! * 15,
+                        height: SizeConfig.defaultSize! * 13,
                         width: SizeConfig.defaultSize! * 22,
                         fit: BoxFit.cover,
                       ),
@@ -59,7 +60,7 @@ class SuggestedMealCard extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: SizeConfig.defaultSize! * 10,
+                  bottom: SizeConfig.defaultSize! * 8.5,
                   left: SizeConfig.defaultSize! * 18,
                   child: FavouriteIconButton(),
                 ),

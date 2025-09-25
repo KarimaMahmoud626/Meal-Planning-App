@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomTitleSubtitle extends StatelessWidget {
-  const CustomTitleSubtitle({super.key, this.title, this.subTitle});
+  const CustomTitleSubtitle({
+    super.key,
+    this.title,
+    this.subTitle,
+    this.titleColor,
+    this.subTitleColor,
+  });
 
   final String? title;
   final String? subTitle;
+  final Color? titleColor;
+  final Color? subTitleColor;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +24,7 @@ class CustomTitleSubtitle extends StatelessWidget {
           Text(
             title!,
             style: TextStyle(
-              color: Colors.white,
+              color: titleColor,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -25,7 +33,7 @@ class CustomTitleSubtitle extends StatelessWidget {
           Text(
             subTitle!,
             style: TextStyle(
-              color: Colors.white,
+              color: subTitleColor,
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),

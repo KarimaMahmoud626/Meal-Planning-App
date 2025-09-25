@@ -13,6 +13,8 @@ class UserProfile extends StatelessWidget {
         CustomTitleSubtitle(
           title: 'Karima',
           subTitle: 'elnadykarima@gmail.com',
+          titleColor: Color(0xFFFFFFFF),
+          subTitleColor: Color(0xFFFFFFFF),
         ),
       ],
     );

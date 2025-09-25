@@ -5,7 +5,6 @@ import 'package:meal_planning_app/core/widgets/custom_dots_indicator.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/login/login_view.dart';
 import 'package:meal_planning_app/features/onBoarding/presentation/widgets/custom_page_view.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
