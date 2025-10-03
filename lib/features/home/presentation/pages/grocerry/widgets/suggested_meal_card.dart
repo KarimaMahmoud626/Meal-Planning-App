@@ -31,11 +31,16 @@ class SuggestedMealCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Image.asset(
-                        imagePath!,
-                        height: SizeConfig.defaultSize! * 13,
-                        width: SizeConfig.defaultSize! * 22,
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                        child: Image.asset(
+                          imagePath!,
+                          height: SizeConfig.defaultSize! * 13,
+                          width: SizeConfig.defaultSize! * 22,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

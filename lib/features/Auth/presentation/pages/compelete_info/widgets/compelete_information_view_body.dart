@@ -10,7 +10,7 @@ import 'package:meal_planning_app/features/Auth/domain/models/user_model.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_state.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/widgets/compelete_info_item.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/home_view.dart';
+import 'package:meal_planning_app/core/widgets/bottom_nav_bar.dart';
 
 class CompeleteInformationViewBody extends StatefulWidget {
   const CompeleteInformationViewBody({super.key});
@@ -32,7 +32,7 @@ class _CompeleteInformationViewBodyState
       listener: (context, state) {
         if (state is CompeleteInfoSuccess) {
           Get.to(
-            () => HomeView(),
+            () => BottomNavContainer(),
             duration: Duration(milliseconds: 500),
             transition: getx.Transition.rightToLeft,
           );
