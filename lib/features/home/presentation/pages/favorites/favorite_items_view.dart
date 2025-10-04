@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/custom_app_bar.dart';
+import 'package:meal_planning_app/core/widgets/custom_app_bar.dart';
 
 class FavoriteItemsView extends StatelessWidget {
   const FavoriteItemsView({super.key});
@@ -7,7 +7,7 @@ class FavoriteItemsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: SimpleAppBar(pageName: 'Favorites'),
       // bottomNavigationBar: BottomNavBar(),
     );
   }

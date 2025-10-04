@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/user_avatar.dart';
+import 'package:meal_planning_app/core/widgets/user_avatar.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});

@@ -6,14 +6,21 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-          child: CartViewItemCard(),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: CartViewItemCard(
+              itemName: 'Green Apple',
+              price: '1\$',
+              image: 'assets/images/green apple.jpeg',
+            ),
+          );
+        },
+      ),
     );
   }
 }

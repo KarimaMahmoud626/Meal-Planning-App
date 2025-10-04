@@ -4,7 +4,7 @@ import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/favourite_icon_button.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/rounded_rectangle_image_container.dart';
+import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 
 class GrocerryItemCard extends StatelessWidget {
   const GrocerryItemCard({super.key});
