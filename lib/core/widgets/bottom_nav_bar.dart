@@ -3,8 +3,8 @@ import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/home_view.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/cart_view.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/favorite_items_view.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/cart/cart_view.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/favorites/favorite_items_view.dart';
 
 class BottomNavContainer extends StatelessWidget {
   BottomNavContainer({super.key});
