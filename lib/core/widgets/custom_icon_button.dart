@@ -6,11 +6,13 @@ class CustomIconButton extends StatelessWidget {
     this.buttonColor,
     required this.icon,
     this.iconColor,
+    this.iconSize = 24,
   });
 
   final Color? buttonColor;
   final IconData icon;
   final Color? iconColor;
+  final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CustomIconButton extends StatelessWidget {
       ),
       child: IconButton(
         padding: EdgeInsets.zero,
-        icon: Icon(icon, size: 24, color: iconColor),
+        icon: Icon(icon, size: iconSize, color: iconColor),
         onPressed: () {},
       ),
     );

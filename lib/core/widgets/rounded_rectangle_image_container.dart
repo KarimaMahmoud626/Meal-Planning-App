@@ -9,12 +9,14 @@ class RoundedRectangleImageContainer extends StatelessWidget {
     this.height = 11,
     this.width = 20,
     this.borderRadius = 10,
+    this.border = true,
   });
 
   final String? image;
   final double height;
   final double width;
   final double borderRadius;
+  final bool? border;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,10 @@ class RoundedRectangleImageContainer extends StatelessWidget {
       width: finalWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: kMainColor),
+        border:
+            border == true
+                ? Border.all(color: kMainColor)
+                : Border.all(color: Colors.white),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
