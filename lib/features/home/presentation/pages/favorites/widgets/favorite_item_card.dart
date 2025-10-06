@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 
@@ -22,12 +22,11 @@ class FavoriteItemCard extends StatelessWidget {
             Positioned.fill(
               child: RoundedRectangleImageContainer(
                 image: 'assets/images/green apple.jpeg',
-                border: false,
               ),
             ),
 
             Positioned(
-              bottom: SizeConfig.defaultSize! * 0.75,
+              bottom: SizeConfig.defaultSize!,
               left: SizeConfig.defaultSize! * 2,
               right: SizeConfig.defaultSize! * 2,
               child: Row(
@@ -36,9 +35,16 @@ class FavoriteItemCard extends StatelessWidget {
                   SizedBox(
                     height: SizeConfig.defaultSize! * 5,
                     width: SizeConfig.defaultSize! * 15,
-                    child: CustomGeneralButton(
-                      text: 'Add to Cart',
-                      onTap: () {},
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kMainColor,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Add to Card',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   CustomIconButton(

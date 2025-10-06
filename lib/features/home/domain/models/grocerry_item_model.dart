@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meal_planning_app/core/constants.dart';
 
 class GrocerryItemModel {
@@ -19,7 +20,8 @@ class GrocerryItemModel {
     this.description,
   });
 
-  factory GrocerryItemModel.fromJson(data) {
+  factory GrocerryItemModel.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
     return GrocerryItemModel(
       name: data[kName],
       price: data[kPrice],

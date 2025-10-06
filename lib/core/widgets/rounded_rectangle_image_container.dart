@@ -6,47 +6,46 @@ class RoundedRectangleImageContainer extends StatelessWidget {
   const RoundedRectangleImageContainer({
     super.key,
     this.image,
-    this.height = 11,
-    this.width = 20,
-    this.borderRadius = 10,
-    this.border = true,
+    this.height,
+    this.width,
   });
-
   final String? image;
-  final double height;
-  final double width;
-  final double borderRadius;
-  final bool? border;
-
+  final double? height;
+  final double? width;
   @override
   Widget build(BuildContext context) {
-    final double finalHeight = height * SizeConfig.defaultSize!;
-    final double finalWidth = width * SizeConfig.defaultSize!;
-
-    return Container(
-      height: finalHeight,
-      width: finalWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
-        border:
-            border == true
-                ? Border.all(color: kMainColor)
-                : Border.all(color: Colors.white),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius),
-        child:
-            image != null
-                ? Image.asset(
-                  image!,
-                  fit: BoxFit.cover,
-                  width: finalWidth,
-                  height: finalHeight,
-                )
-                : Container(
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.image_not_supported),
-                ),
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Container(
+        height:
+            height != null
+                ? (SizeConfig.defaultSize! * height!)
+                : (SizeConfig.defaultSize! * 11),
+        width:
+            width != null
+                ? (SizeConfig.defaultSize! * width!)
+                : (SizeConfig.defaultSize! * 20),
+        constraints: BoxConstraints(),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: kMainColor),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            image!,
+            fit: BoxFit.cover,
+            width:
+                width != null
+                    ? (SizeConfig.defaultSize! * width!)
+                    : (SizeConfig.defaultSize! * 20),
+            height:
+                height != null
+                    ? (SizeConfig.defaultSize! * height!)
+                    : (SizeConfig.defaultSize! * 11),
+          ),
+        ),
       ),
     );
   }

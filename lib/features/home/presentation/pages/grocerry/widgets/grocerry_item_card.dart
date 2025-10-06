@@ -11,56 +11,51 @@ class GrocerryItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 4),
-      child: SizedBox(
-        height: SizeConfig.defaultSize! * 22,
-        width: SizeConfig.defaultSize! * 20,
-        child: Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
+    return SizedBox(
+      height: SizeConfig.defaultSize! * 22,
+      width: SizeConfig.defaultSize! * 20,
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                RoundedRectangleImageContainer(
+                  image: 'assets/images/green apple.jpeg',
+                ),
+                Positioned(
+                  bottom: SizeConfig.defaultSize! * 7,
+                  right: SizeConfig.defaultSize! * 0.5,
+                  child: FavouriteIconButton(),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: SizeConfig.defaultSize! * 8,
+              child: Stack(
                 children: [
-                  RoundedRectangleImageContainer(
-                    image: 'assets/images/green apple.jpeg',
+                  CustomTitleSubtitle(
+                    title: 'Green Apple',
+                    titleColor: Color(0xFF000000),
+                    subTitle: '\$1',
+                    subTitleColor: kMainColor,
                   ),
                   Positioned(
-                    bottom: SizeConfig.defaultSize! * 7.5,
+                    bottom: SizeConfig.defaultSize! * 0.5,
                     right: SizeConfig.defaultSize! * 0.5,
-                    child: FavouriteIconButton(),
+                    child: CustomIconButton(
+                      icon: Icons.add,
+                      iconColor: Color(0xFFFFFFFF),
+                      buttonColor: kMainColor,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(
-                width: double.infinity,
-                height: SizeConfig.defaultSize! * 8,
-                child: Stack(
-                  children: [
-                    CustomTitleSubtitle(
-                      title: 'Green Apple',
-                      titleColor: Color(0xFF000000),
-                      subTitle: '\$1',
-                      subTitleColor: kMainColor,
-                    ),
-                    Positioned(
-                      bottom: SizeConfig.defaultSize! * 0.5,
-                      right: SizeConfig.defaultSize! * 0.5,
-                      child: CustomIconButton(
-                        icon: Icons.add,
-                        iconColor: Color(0xFFFFFFFF),
-                        buttonColor: kMainColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

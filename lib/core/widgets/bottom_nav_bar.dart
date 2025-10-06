@@ -63,7 +63,7 @@ class BottomNavContainer extends StatelessWidget {
       ),
       //popAllScreensOnTapOfSelectedTab: true,
       popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
-      navBarStyle: NavBarStyle.style9,
+      navBarStyle: NavBarStyle.style14,
     );
   }
 }
