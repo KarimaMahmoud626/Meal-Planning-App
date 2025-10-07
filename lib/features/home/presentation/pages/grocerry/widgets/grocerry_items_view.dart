@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:meal_planning_app/features/home/data/repos/fetch_grocerry_items_repo_impl.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/grocerry_item_card.dart';
 
 class GrocerryItemsView extends StatelessWidget {
-  const GrocerryItemsView({super.key, required this.itemCount});
+  GrocerryItemsView({super.key, required this.itemCount});
 
   final int itemCount;
+  final repo = FetchGrocerryItemsRepoImpl(FirebaseFirestore.instance);
 
   @override
   Widget build(BuildContext context) {
