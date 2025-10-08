@@ -22,14 +22,17 @@ class TextRow extends StatelessWidget {
           ),
           Expanded(
             flex: 0,
-            child: Text(
-              'See all',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: kMainColor,
-                decoration: TextDecoration.underline,
-                decorationColor: kMainColor,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'See all',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: kMainColor,
+                  decoration: TextDecoration.underline,
+                  decorationColor: kMainColor,
+                ),
               ),
             ),
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
+import 'package:meal_planning_app/features/home/presentation/manager/cubits/grocerry_items_cubit/cubit/grocerry_items_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/category_button.dart';
 
 class GrocerryCategoriesView extends StatefulWidget {
@@ -32,23 +34,31 @@ class _GrocerryCategoriesViewState extends State<GrocerryCategoriesView> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: SizeConfig.defaultSize! * 14,
-      child: ListView.builder(
-        itemCount: 6,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: GestureDetector(
-              onTap: () {
-                buttonIndex = index;
-                setState(() {});
-              },
-              child: CategoryButton(
-                isPicked: buttonIndex == index,
-                categoryName: categoryNameList[index],
-                image: categoryImageList[index],
-              ),
-            ),
+      child: BlocBuilder<GrocerryItemsCubit, GrocerryItemsState>(
+        builder: (BuildContext context, state) {
+          return ListView.builder(
+            itemCount: 6,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      buttonIndex = index;
+                    });
+                    context.read<GrocerryItemsCubit>().getGrocerryItems(
+                      categoryNameList[index],
+                    );
+                  },
+                  child: CategoryButton(
+                    isPicked: buttonIndex == index,
+                    categoryName: categoryNameList[index],
+                    image: categoryImageList[index],
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

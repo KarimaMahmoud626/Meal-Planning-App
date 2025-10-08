@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 
-class UserModel {
+class UserModel extends Equatable {
   final String? name;
   final String? address;
   final String? phoneNumber;
@@ -25,4 +26,7 @@ class UserModel {
       kPhoneNumber: phoneNumber,
     };
   }
+
+  @override
+  List<Object?> get props => [name, address, email, phoneNumber];
 }

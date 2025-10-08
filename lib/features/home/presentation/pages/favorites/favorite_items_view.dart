@@ -7,10 +7,6 @@ class FavoriteItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SimpleAppBar(pageName: 'Favorites'),
-      body: FavoriteItemsViewBody(),
-      // bottomNavigationBar: BottomNavBar(),
-    );
+    return Scaffold(appBar: CustomAppBar(), body: FavoriteItemsViewBody());
   }
 }

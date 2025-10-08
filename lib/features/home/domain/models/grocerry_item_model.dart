@@ -1,17 +1,18 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 
-class GrocerryItemModel {
+class GrocerryItemModel extends Equatable {
+  final String? id;
   final String? name;
-  final Float? price;
+  final num? price;
   final String? imageUrl;
   final bool? liked;
   final String? category;
   final String? description;
 
-  GrocerryItemModel({
+  const GrocerryItemModel({
+    this.id,
     required this.name,
     required this.price,
     required this.imageUrl,
@@ -23,6 +24,7 @@ class GrocerryItemModel {
   factory GrocerryItemModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return GrocerryItemModel(
+      id: doc.id,
       name: data[kName],
       price: data[kPrice],
       imageUrl: data[kImageUrl],
@@ -42,4 +44,14 @@ class GrocerryItemModel {
       kDescription: description,
     };
   }
+
+  @override
+  List<Object?> get props => [
+    name,
+    price,
+    imageUrl,
+    liked,
+    category,
+    description,
+  ];
 }

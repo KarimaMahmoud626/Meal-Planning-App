@@ -64,11 +64,14 @@ class SuggestedMealCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: SizeConfig.defaultSize! * 8.5,
-                  left: SizeConfig.defaultSize! * 18,
-                  child: FavouriteIconButton(),
-                ),
+                // Positioned(
+                //   bottom: SizeConfig.defaultSize! * 8.5,
+                //   left: SizeConfig.defaultSize! * 18,
+                //   child: FavouriteIconButton(
+                //     isInitiallyLiked: false,
+                //     itemId: '',
+                //   ),
+                // ),
               ],
             ),
             Padding(

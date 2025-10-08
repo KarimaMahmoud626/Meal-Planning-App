@@ -25,7 +25,7 @@ class CustomTitleSubtitle extends StatelessWidget {
             title!,
             style: TextStyle(
               color: titleColor,
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.left,

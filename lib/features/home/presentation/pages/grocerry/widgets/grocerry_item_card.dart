@@ -3,11 +3,14 @@ import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
+import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/favourite_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 
 class GrocerryItemCard extends StatelessWidget {
-  const GrocerryItemCard({super.key});
+  const GrocerryItemCard({super.key, required this.item});
+
+  final GrocerryItemModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +25,14 @@ class GrocerryItemCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                RoundedRectangleImageContainer(
-                  image: 'assets/images/green apple.jpeg',
-                ),
+                RoundedRectangleNetworkImageContainer(image: item.imageUrl),
                 Positioned(
                   bottom: SizeConfig.defaultSize! * 7,
                   right: SizeConfig.defaultSize! * 0.5,
-                  child: FavouriteIconButton(),
+                  child: FavouriteIconButton(
+                    itemId: item.id!,
+                    isInitiallyLiked: item.liked,
+                  ),
                 ),
               ],
             ),
@@ -38,15 +42,16 @@ class GrocerryItemCard extends StatelessWidget {
               child: Stack(
                 children: [
                   CustomTitleSubtitle(
-                    title: 'Green Apple',
+                    title: item.name,
                     titleColor: Color(0xFF000000),
-                    subTitle: '\$1',
+                    subTitle: '\$${item.price}',
                     subTitleColor: kMainColor,
                   ),
                   Positioned(
                     bottom: SizeConfig.defaultSize! * 0.5,
                     right: SizeConfig.defaultSize! * 0.5,
                     child: CustomIconButton(
+                      onPressed: () {},
                       icon: Icons.add,
                       iconColor: Color(0xFFFFFFFF),
                       buttonColor: kMainColor,
