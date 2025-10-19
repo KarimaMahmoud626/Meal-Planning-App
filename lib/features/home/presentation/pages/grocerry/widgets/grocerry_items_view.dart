@@ -1,14 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meal_planning_app/features/home/data/repos/grocerry_items_repo_impl.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/grocerry_items_cubit/cubit/grocerry_items_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/grocerry_item_card.dart';
 
 class GrocerryItemsView extends StatelessWidget {
-  GrocerryItemsView({super.key});
-
-  final repo = FetchGrocerryItemsRepoImpl(FirebaseFirestore.instance);
+  const GrocerryItemsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class GrocerryItemsView extends StatelessWidget {
         } else if (state is GrocerryItemsError) {
           return Center(child: Text(state.errorMessage));
         } else {
-          return const Center(child: Text('Select a category'));
+          return const Center(child: Text('Your cart is empty'));
         }
       },
     );

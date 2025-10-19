@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
 import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/add_item_to_cart_button.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/favourite_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 
@@ -29,10 +29,7 @@ class GrocerryItemCard extends StatelessWidget {
                 Positioned(
                   bottom: SizeConfig.defaultSize! * 7,
                   right: SizeConfig.defaultSize! * 0.5,
-                  child: FavouriteIconButton(
-                    itemId: item.id!,
-                    isInitiallyLiked: item.liked,
-                  ),
+                  child: FavouriteIconButton(item: item),
                 ),
               ],
             ),
@@ -50,11 +47,12 @@ class GrocerryItemCard extends StatelessWidget {
                   Positioned(
                     bottom: SizeConfig.defaultSize! * 0.5,
                     right: SizeConfig.defaultSize! * 0.5,
-                    child: CustomIconButton(
-                      onPressed: () {},
-                      icon: Icons.add,
-                      iconColor: Color(0xFFFFFFFF),
+                    child: AddItemToCartButton(
+                      item: item,
+                      iconColor: Colors.white,
                       buttonColor: kMainColor,
+                      icon: Icons.add,
+                      selectedIcon: Icons.check,
                     ),
                   ),
                 ],

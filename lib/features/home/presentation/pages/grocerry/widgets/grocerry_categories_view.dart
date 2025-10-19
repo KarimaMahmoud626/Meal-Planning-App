@@ -37,7 +37,7 @@ class _GrocerryCategoriesViewState extends State<GrocerryCategoriesView> {
       child: BlocBuilder<GrocerryItemsCubit, GrocerryItemsState>(
         builder: (BuildContext context, state) {
           return ListView.builder(
-            itemCount: 6,
+            itemCount: categoryNameList.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Padding(

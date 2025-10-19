@@ -36,6 +36,7 @@ class GrocerryItemModel extends Equatable {
 
   toJson() {
     return {
+      kId: id,
       kName: name,
       kPrice: price,
       kImageUrl: imageUrl,
@@ -45,8 +46,23 @@ class GrocerryItemModel extends Equatable {
     };
   }
 
+  toCartItem() {
+    return {kId: id, kName: name, kPrice: price, kImageUrl: imageUrl};
+  }
+
+  toFavItem() {
+    return {
+      kId: id,
+      kName: name,
+      kPrice: price,
+      kImageUrl: imageUrl,
+      kLiked: liked,
+    };
+  }
+
   @override
   List<Object?> get props => [
+    id,
     name,
     price,
     imageUrl,

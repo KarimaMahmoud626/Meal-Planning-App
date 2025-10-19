@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/manager/cubit/counter_cubit.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
-import 'package:meal_planning_app/core/widgets/int_counter.dart';
+import 'package:meal_planning_app/features/home/domain/models/cart_item_model.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/cart/widgets/int_counter.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 
 class CartViewItemCard extends StatelessWidget {
-  const CartViewItemCard({
-    super.key,
-    required this.itemName,
-    required this.price,
-    required this.image,
-  });
+  const CartViewItemCard({super.key, required this.item});
 
-  final String itemName;
-  final String price;
-  final String image;
+  final CartItemModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +28,20 @@ class CartViewItemCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Row(
                 children: [
-                  RoundedRectangleImageContainer(height: 16, image: image),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: CustomTitleSubtitle(
-                      title: itemName,
-                      subTitle: price,
-                      titleColor: Colors.black,
-                      subTitleColor: kMainColor,
+                  RoundedRectangleNetworkImageContainer(
+                    height: 16,
+                    image: item.imageUrl,
+                  ),
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: CustomTitleSubtitle(
+                        title: item.name,
+                        subTitle: '\$${item.price}',
+                        titleColor: Colors.black,
+                        subTitleColor: kMainColor,
+                      ),
                     ),
                   ),
                 ],
@@ -48,7 +50,7 @@ class CartViewItemCard extends StatelessWidget {
             Positioned(
               bottom: SizeConfig.defaultSize! * 0.5,
               right: SizeConfig.defaultSize! * 0.5,
-              child: IntCounter(),
+              child: IntCounter(item: item),
             ),
           ],
         ),

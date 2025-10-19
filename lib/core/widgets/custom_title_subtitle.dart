@@ -29,6 +29,7 @@ class CustomTitleSubtitle extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.left,
+            maxLines: 2,
           ),
           Text(
             subTitle!,
