@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/features/home/domain/models/ingredient_model.dart';
 
-class MealModel {
+class MealModel extends Equatable {
   final String mealName;
   final String mealId;
   final String mealArea;
@@ -11,7 +12,7 @@ class MealModel {
   final String mealCategory;
   final List<IngredientModel> mealIngredients;
 
-  MealModel({
+  const MealModel({
     required this.mealCategory,
     required this.mealName,
     required this.mealId,
@@ -25,13 +26,13 @@ class MealModel {
   factory MealModel.fromJson(Map<String, dynamic> jsonData) {
     final List<IngredientModel> ingredients = [];
 
-    for (int i = 0; i <= 20; i++) {
+    for (int i = 1; i <= 20; i++) {
       final ingredientName = jsonData[kMealIngredientName + i.toString()];
       final ingredientMeasure = jsonData[kMealIngredientMeasure + i.toString()];
       if (ingredientName != null &&
-          ingredientName.toString().isNotEmpty &&
+          ingredientName.toString().trim().isNotEmpty &&
           ingredientMeasure != null &&
-          ingredientMeasure.toString().isNotEmpty) {
+          ingredientMeasure.toString().trim().isNotEmpty) {
         ingredients.add(
           IngredientModel(
             ingredientName: ingredientName.toString(),
@@ -41,13 +42,13 @@ class MealModel {
       }
     }
     return MealModel(
-      mealCategory: jsonData[kMealCategory],
-      mealName: jsonData[kMealName],
-      mealId: jsonData[kMealId],
-      mealArea: jsonData[kMealArea],
-      mealRecipe: jsonData[kMealRecipe],
-      mealImageUrl: jsonData[kMealImageUrl],
-      mealVideoUrl: jsonData[kMealVideoUrl],
+      mealCategory: jsonData[kMealCategory] ?? '',
+      mealName: jsonData[kMealName] ?? '',
+      mealId: jsonData[kMealId] ?? '',
+      mealArea: jsonData[kMealArea] ?? '',
+      mealRecipe: jsonData[kMealRecipe] ?? '',
+      mealImageUrl: jsonData[kMealImageUrl] ?? '',
+      mealVideoUrl: jsonData[kMealVideoUrl] ?? '',
       mealIngredients: ingredients,
     );
   }
@@ -63,4 +64,16 @@ class MealModel {
       kMealIngredientsList: mealIngredients.map((e) => e.toJson()).toList(),
     };
   }
+
+  @override
+  List<Object?> get props => [
+    mealName,
+    mealId,
+    mealArea,
+    mealCategory,
+    mealImageUrl,
+    mealIngredients,
+    mealRecipe,
+    mealVideoUrl,
+  ];
 }

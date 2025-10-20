@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/constants.dart';
 
 class TextRow extends StatelessWidget {
-  const TextRow({super.key, this.title});
+  const TextRow({super.key, this.title, this.onPressed});
 
   final String? title;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class TextRow extends StatelessWidget {
           Expanded(
             flex: 0,
             child: TextButton(
-              onPressed: () {},
+              onPressed: onPressed,
               child: Text(
                 'See all',
                 style: TextStyle(

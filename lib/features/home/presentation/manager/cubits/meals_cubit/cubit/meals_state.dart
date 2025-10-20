@@ -7,4 +7,24 @@ sealed class MealsState extends Equatable {
   List<Object> get props => [];
 }
 
-final class MealsInitial extends MealsState {}
+class MealsLoading extends MealsState {}
+
+class MealsLoaded extends MealsState {
+  final List<MealModel> meals;
+
+  const MealsLoaded(this.meals);
+
+  @override
+  List<Object> get props => [meals];
+}
+
+class MealsError extends MealsState {
+  final String errorMessage;
+
+  const MealsError(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}
+
+class MealsEmpty extends MealsState {}

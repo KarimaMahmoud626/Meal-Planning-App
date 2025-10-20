@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
+import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/favourite_icon_button.dart';
+import 'package:meal_planning_app/features/home/domain/models/meal_model.dart';
 
 class SuggestedMealCard extends StatelessWidget {
-  const SuggestedMealCard({super.key, this.mealName, this.imagePath});
+  const SuggestedMealCard({super.key, required this.meal});
 
-  final String? mealName;
-  final String? imagePath;
+  final MealModel meal;
 
   @override
   Widget build(BuildContext context) {
@@ -21,46 +21,32 @@ class SuggestedMealCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            VerticalSpace(1),
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
-                  child: Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(12),
-                        ),
-                        child: Image.asset(
-                          imagePath!,
-                          height: SizeConfig.defaultSize! * 13,
-                          width: SizeConfig.defaultSize! * 22,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
+                RoundedRectangleNetworkImageContainer(
+                  height: 13,
+                  width: 22,
+                  image: meal.mealImageUrl,
                 ),
                 Positioned(
                   bottom: 5,
                   left: SizeConfig.defaultSize! * 2,
-                  right: SizeConfig.defaultSize! * 9,
+                  right: SizeConfig.defaultSize! * 7,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: kMainColor,
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                     onPressed: () {},
                     child: const Text(
-                      'BUY NOW',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'Show Recipe',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
@@ -74,12 +60,16 @@ class SuggestedMealCard extends StatelessWidget {
                 // ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                mealName!,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                textAlign: TextAlign.center,
+            Flexible(
+              fit: FlexFit.loose,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: Text(
+                  meal.mealName,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                ),
               ),
             ),
           ],

@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 
-class IngredientModel {
+class IngredientModel extends Equatable {
   final String ingredientName;
   final String ingredientMeasure;
 
@@ -17,4 +18,7 @@ class IngredientModel {
     kMealIngredientName: ingredientName,
     kMealIngredientMeasure: ingredientMeasure,
   };
+
+  @override
+  List<Object?> get props => [ingredientMeasure, ingredientName];
 }
