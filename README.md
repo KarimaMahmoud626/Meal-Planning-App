@@ -110,18 +110,36 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ### 🖼 App Preview
 
-| Splash | Onboarding 1 | Onboarding 2 | Onboarding 3 | Onboarding 4 |
-|:---------:|:------------:|:------------:|:------------:|:------------:|
+| Splash | Onboarding 1 | Onboarding 2 | Onboarding 3 | Onboarding 4 |  
+|:------------:|:------------:|:------------:|:------------:|:------------:|
 | ![Splash](assets/screens/splash.jpg) | ![Onboarding1](assets/screens/onboarding1.jpg) | ![Onboarding2](assets/screens/onboarding2.jpg) | ![Onboarding3](assets/screens/onboarding3.jpg) | ![Onboarding4](assets/screens/onboarding4.jpg) |
 
 ---
 
-| Login 1 | Login 2 | Cart | Favorites |
-|:-------:|:-------:|:----:|:---------:|
-| ![Login1](assets/screens/login1.jpg) | ![Login2](assets/screens/login2.jpg) | ![Cart](assets/screens/cart.jpg) | ![Favorites](assets/screens/favorites.jpg) |
+| Login 1 | Login 2 |   Cart   | Favorites |  
+|:-------:|:-------:|:--------:|:---------:|
+| ![Login1](assets/screens/login1.jpg) | ![Login2](assets/screens/login2.jpg) | ![Cart](assets/screens/cart.jpg) | ![Favorites](assets/screens/favorites.jpg) |  
 
 ---
 
-| Grocery 1 | Grocery 2 | Grocery 3 | Grocery 4 | Grocery 5 |
+| Grocery 1 | Grocery 2 | Grocery 3 | Grocery 4 | Grocery 5 |  
 |:---------:|:---------:|:---------:|:---------:|:---------:|
-| ![Grocery1](assets/screens/grocery1.jpg) | ![Grocery2](assets/screens/grocery2.jpg) | ![Grocery3](assets/screens/grocery3.jpg) | ![Grocery4](assets/screens/grocery4.jpg) | ![Grocery5](assets/screens/grocery5.jpg) |
+| ![Grocery1](assets/screens/grocery1.jpg) | ![Grocery2](assets/screens/grocery2.jpg) | ![Grocery3](assets/screens/grocery3.jpg) | ![Grocery4](assets/screens/grocery4.jpg) | ![Grocery5](assets/screens/grocery5.jpg) |  
+
+---
+
+## 🚀 Upcoming Features
+
+Here are some of the planned enhancements that will be added soon:
+
+- 🗓️ **Meal Planner Calendar** — plan your weekly meals easily  
+- 📦 **Offline Mode** — browse saved data using local caching  
+- 🔔 **Push Notifications** — get daily meal suggestions and reminders  
+- 🌙 **Dark Mode Support** — enjoy a better experience at night  
+- 🧪 **Unit Tests** — ensure stability and reliability for Cubits and repositories  
+
+---
+
+## 🚧 Project Status
+This app is still under active development.  
+More features, improvements, and UI updates will be added soon — stay tuned! 🌱
