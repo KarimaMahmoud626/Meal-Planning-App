@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:meal_planning_app/features/home/domain/models/meal_model.dart';
-import 'package:meal_planning_app/features/home/domain/repos/suggested_meal_repo.dart';
+import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/domain/repos/suggested_meal_repo.dart';
 import 'package:http/http.dart' as http;
 
 class SuggestedMealRepoImpl extends SuggestedMealRepo {

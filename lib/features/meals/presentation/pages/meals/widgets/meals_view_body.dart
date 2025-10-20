@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meal_planning_app/features/home/presentation/manager/cubits/meals_cubit/cubit/meals_cubit.dart';
+import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
 
 class MealsViewBody extends StatelessWidget {
   const MealsViewBody({super.key});

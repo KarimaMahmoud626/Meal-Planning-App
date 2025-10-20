@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
-import 'package:meal_planning_app/features/home/domain/models/ingredient_model.dart';
+import 'package:meal_planning_app/features/meals/domain/models/ingredient_model.dart';
 
 class MealModel extends Equatable {
   final String mealName;

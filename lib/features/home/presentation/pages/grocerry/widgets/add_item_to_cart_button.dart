@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meal_planning_app/features/home/domain/models/cart_item_model.dart';
 import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/cart_cubit/cubit/cart_cubit.dart';
 
@@ -53,7 +54,9 @@ class _AddItemToCartButtonState extends State<AddItemToCartButton> {
             onPressed: () async {
               final cartCubit = context.read<CartCubit>();
               if (isInCart) {
-                await cartCubit.removeItem(widget.item.toCartItem());
+                await cartCubit.removeItem(
+                  CartItemModel.fromGrocerryItem(widget.item),
+                );
               } else {
                 await cartCubit.addItem(widget.item);
               }

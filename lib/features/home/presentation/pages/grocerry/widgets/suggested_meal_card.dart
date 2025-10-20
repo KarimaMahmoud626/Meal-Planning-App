@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
-import 'package:meal_planning_app/core/widgets/space_widget.dart';
-import 'package:meal_planning_app/features/home/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
 
 class SuggestedMealCard extends StatelessWidget {
   const SuggestedMealCard({super.key, required this.meal});

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
 import 'package:meal_planning_app/core/widgets/text_row.dart';
-import 'package:meal_planning_app/features/home/presentation/manager/cubits/meals_cubit/cubit/meals_cubit.dart';
+import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/grocerry_view.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/suggested_meals_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meals/meals_view.dart';
