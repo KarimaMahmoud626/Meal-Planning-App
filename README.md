@@ -110,9 +110,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ### 🖼 App Preview
 
-| Splash | Onboarding 1 | Onboarding 2 | Onboarding 3 | Onboarding 4 |  
+|    Splash    | Onboarding 1 | Onboarding 2 | Onboarding 3 | Onboarding 4 |  
 |:------------:|:------------:|:------------:|:------------:|:------------:|
-| ![Splash](assets/screens/splash.jpg) | ![Onboarding1](assets/screens/onboarding1.jpg) | ![Onboarding2](assets/screens/onboarding2.jpg) | ![Onboarding3](assets/screens/onboarding3.jpg) | ![Onboarding4](assets/screens/onboarding4.jpg) |
+| ![   Splash   ](assets/screens/splash.jpg) | ![Onboarding1](assets/screens/onboarding1.jpg) | ![Onboarding2](assets/screens/onboarding2.jpg) | ![Onboarding3](assets/screens/onboarding3.jpg) | ![Onboarding4](assets/screens/onboarding4.jpg) |
 
 ---
 
