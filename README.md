@@ -68,6 +68,11 @@ This app follows the **Clean Architecture pattern**, ensuring maintainability, s
  ┃ ┃ ┣ 📂 data/  
  ┃ ┃ ┗ 📂 presentation/  
  ┃ ┃  
+ ┃ ┣ 📂 meals/  
+ ┃ ┃ ┣ 📂 domain/  
+ ┃ ┃ ┣ 📂 data/  
+ ┃ ┃ ┗ 📂 presentation/  
+ ┃ ┃  
  ┃ ┣ 📂 onboarding/  
  ┃ ┃ ┗ 📂 presentation/  
  ┃ ┃  
@@ -128,6 +133,11 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
+| Meal Categories | Meals View |  
+|:---------------:|:----------:|  
+| ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) |  
+
+---
 ## 🚀 Upcoming Features
 
 Here are some of the planned enhancements that will be added soon:
