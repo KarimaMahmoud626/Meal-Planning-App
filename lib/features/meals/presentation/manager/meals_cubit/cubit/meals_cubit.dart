@@ -25,4 +25,20 @@ class MealsCubit extends Cubit<MealsState> {
       Exception(e.toString());
     }
   }
+
+  getMealsByCategory(String category) async {
+    try {
+      final result = await repo.getMealsByCategory(category.toLowerCase());
+
+      result.fold((error) => emit(MealsError(error.toString())), (meals) {
+        if (meals.isNotEmpty) {
+          emit(MealsLoaded(meals));
+        } else {
+          emit(MealsEmpty());
+        }
+      });
+    } catch (e) {
+      Exception(e.toString());
+    }
+  }
 }

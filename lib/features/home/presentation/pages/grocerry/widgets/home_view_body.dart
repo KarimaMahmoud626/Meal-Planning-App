@@ -7,7 +7,7 @@ import 'package:meal_planning_app/core/widgets/text_row.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/grocerry_view.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/suggested_meals_view.dart';
-import 'package:meal_planning_app/features/meals/presentation/pages/meals/meals_view.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/meal_categories_view/meal_categories_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -23,7 +23,7 @@ class HomeViewBody extends StatelessWidget {
               title: 'Suggested Meals',
               onPressed: () {
                 Get.to(
-                  () => MealsView(),
+                  () => MealCategoriesView(),
                   duration: const Duration(milliseconds: 500),
                   transition: getx.Transition.rightToLeft,
                 );

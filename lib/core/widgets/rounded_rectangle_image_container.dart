@@ -57,10 +57,12 @@ class RoundedRectangleNetworkImageContainer extends StatelessWidget {
     this.image,
     this.height,
     this.width,
+    this.isBordered = true,
   });
   final String? image;
   final double? height;
   final double? width;
+  final bool? isBordered;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -78,7 +80,10 @@ class RoundedRectangleNetworkImageContainer extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: kMainColor),
+          border:
+              isBordered!
+                  ? Border.all(color: kMainColor)
+                  : Border.all(color: Colors.white),
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),

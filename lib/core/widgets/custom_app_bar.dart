@@ -75,7 +75,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () {},
                 icon: Icon(
                   Icons.arrow_back_ios_new,
-                  size: 28,
+                  size: 22,
                   color: Colors.white,
                 ),
               ),
