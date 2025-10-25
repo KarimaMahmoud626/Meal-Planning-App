@@ -6,4 +6,6 @@ abstract class SuggestedMealRepo {
   Future<Either<Exception, List<MealModel>>> getMealsByCategory(
     String category,
   );
+  Future<Either<Exception, MealModel>> getMealsById(String id);
+  Future<void> toggleLike(String mealId, bool isLiked);
 }

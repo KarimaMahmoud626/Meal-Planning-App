@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
@@ -72,7 +74,9 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 icon: Icon(
                   Icons.arrow_back_ios_new,
                   size: 22,

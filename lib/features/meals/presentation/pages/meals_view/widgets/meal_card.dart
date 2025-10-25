@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/meal_description_view.dart';
 
 class MealCard extends StatelessWidget {
   const MealCard({super.key, required this.meal});
@@ -58,7 +62,13 @@ class MealCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.to(
+                  () => MealDescriptionView(mealId: meal.mealId),
+                  duration: const Duration(milliseconds: 500),
+                  transition: getx.Transition.rightToLeft,
+                );
+              },
               child: const Text(
                 'Show Recipe',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),

@@ -41,4 +41,20 @@ class MealsCubit extends Cubit<MealsState> {
       Exception(e.toString());
     }
   }
+
+  getMealsById(String id) async {
+    try {
+      final result = await repo.getMealsById(id);
+
+      result.fold((error) => emit(MealsError(error.toString())), (meal) {
+        emit(MealDataLoaded(meal));
+      });
+    } catch (e) {
+      Exception(e.toString());
+    }
+  }
+
+  toggleLike(String id, bool isLiked) async {
+    await repo.toggleLike(id, isLiked);
+  }
 }

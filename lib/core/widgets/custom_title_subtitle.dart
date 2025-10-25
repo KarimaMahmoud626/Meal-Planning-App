@@ -7,12 +7,16 @@ class CustomTitleSubtitle extends StatelessWidget {
     this.subTitle,
     this.titleColor,
     this.subTitleColor,
+    this.titleFontSize = 16,
+    this.subTitleFontSize = 14,
   });
 
   final String? title;
   final String? subTitle;
   final Color? titleColor;
   final Color? subTitleColor;
+  final double? titleFontSize;
+  final double? subTitleFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class CustomTitleSubtitle extends StatelessWidget {
             title!,
             style: TextStyle(
               color: titleColor,
-              fontSize: 16,
+              fontSize: titleFontSize,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.left,
@@ -35,7 +39,7 @@ class CustomTitleSubtitle extends StatelessWidget {
             subTitle!,
             style: TextStyle(
               color: subTitleColor,
-              fontSize: 14,
+              fontSize: subTitleFontSize,
               fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.left,

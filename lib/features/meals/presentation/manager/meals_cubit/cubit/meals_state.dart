@@ -18,6 +18,15 @@ class MealsLoaded extends MealsState {
   List<Object> get props => [meals];
 }
 
+class MealDataLoaded extends MealsState {
+  final MealModel meal;
+
+  const MealDataLoaded(this.meal);
+
+  @override
+  List<Object> get props => [meal];
+}
+
 class MealsError extends MealsState {
   final String errorMessage;
 

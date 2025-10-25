@@ -13,6 +13,7 @@ class MealsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MealsCubit()..getMealsByCategory(categoryName),
+
       child: Scaffold(
         appBar: SimpleAppBar(pageName: categoryName),
         body: MealsViewBody(),

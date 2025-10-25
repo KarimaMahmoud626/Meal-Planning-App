@@ -1,26 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/features/meals/domain/models/fav_meal_model.dart';
 import 'package:meal_planning_app/features/meals/domain/models/ingredient_model.dart';
 
 class MealModel extends Equatable {
   final String mealName;
   final String mealId;
-  final String mealArea;
-  final String mealRecipe;
+  final String? mealArea;
+  final String? mealRecipe;
   final String mealImageUrl;
-  final String mealVideoUrl;
+  final String? mealVideoUrl;
   final String mealCategory;
-  final List<IngredientModel> mealIngredients;
+  final List<IngredientModel>? mealIngredients;
+  final bool? liked;
 
   const MealModel({
     required this.mealCategory,
     required this.mealName,
     required this.mealId,
-    required this.mealArea,
-    required this.mealRecipe,
+    this.mealArea,
+    this.mealRecipe,
     required this.mealImageUrl,
-    required this.mealVideoUrl,
-    required this.mealIngredients,
+    this.mealVideoUrl,
+    this.mealIngredients,
+    this.liked = false,
   });
 
   factory MealModel.fromJson(Map<String, dynamic> jsonData) {
@@ -61,8 +65,41 @@ class MealModel extends Equatable {
       kMealRecipe: mealRecipe,
       kMealImageUrl: mealImageUrl,
       kMealVideoUrl: mealVideoUrl,
-      kMealIngredientsList: mealIngredients.map((e) => e.toJson()).toList(),
+      kMealIngredientsList: mealIngredients!.map((e) => e.toJson()).toList(),
     };
+  }
+
+  factory MealModel.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return MealModel(
+      mealName: data[kName],
+      mealImageUrl: data[kMealImageUrl],
+      liked: data[kLiked],
+      mealId: data[kMealId],
+      mealCategory: data[kMealCategory],
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    final data = <String, dynamic>{
+      kName: mealName,
+      kMealArea: mealArea,
+      kMealImageUrl: mealImageUrl,
+      kLiked: liked,
+    };
+    data.removeWhere((key, value) => value == null);
+    return data;
+  }
+
+  FavMealModel toFavMealModel() {
+    return FavMealModel(
+      mealName: mealName,
+      mealId: mealId,
+      mealImageUrl: mealImageUrl,
+      mealCategory: mealCategory,
+      mealArea: mealArea ?? '',
+      liked: liked ?? false,
+    );
   }
 
   @override
@@ -75,5 +112,6 @@ class MealModel extends Equatable {
     mealIngredients,
     mealRecipe,
     mealVideoUrl,
+    liked,
   ];
 }
