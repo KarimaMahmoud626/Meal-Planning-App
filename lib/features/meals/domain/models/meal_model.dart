@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/features/meals/domain/models/fav_meal_model.dart';
 import 'package:meal_planning_app/features/meals/domain/models/ingredient_model.dart';
+import 'package:meal_planning_app/features/meals/domain/models/nutrition_request_model.dart';
 
 class MealModel extends Equatable {
   final String mealName;
@@ -99,6 +100,21 @@ class MealModel extends Equatable {
       mealCategory: mealCategory,
       mealArea: mealArea ?? '',
       liked: liked ?? false,
+    );
+  }
+
+  NutritionRequestModel toNutritionModel() {
+    final mealIngredientsList =
+        mealIngredients
+            ?.map((i) => '${i.ingredientMeasure} ${i.ingredientName}')
+            .toList() ??
+        [];
+
+    return NutritionRequestModel(
+      title: mealName,
+      servings: 1,
+      instructions: mealRecipe ?? '',
+      ingredients: mealIngredientsList,
     );
   }
 

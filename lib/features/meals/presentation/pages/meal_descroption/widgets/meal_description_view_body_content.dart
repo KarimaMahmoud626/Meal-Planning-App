@@ -4,6 +4,7 @@ import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/ingredient_list.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/meal_image_container.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/nutrition_sumary.dart';
 
 class MealDescriptionViewBodyContent extends StatelessWidget {
   const MealDescriptionViewBodyContent({super.key, required this.meal});
@@ -21,7 +22,17 @@ class MealDescriptionViewBodyContent extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              '🍅 Ingredients',
+              'NUTRITION SUMMARY',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          NutritionSumary(meal: meal),
+          VerticalSpace(1),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              '🍅 INGREDIENTS',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
@@ -29,7 +40,7 @@ class MealDescriptionViewBodyContent extends StatelessWidget {
           IngredientList(ingredients: meal.mealIngredients!),
           VerticalSpace(1),
           CustomTitleSubtitle(
-            title: '👩‍🍳 Recipe Instructions',
+            title: '👩‍🍳 RECIPE INSTRUCTIONS',
             titleFontSize: 20,
             subTitle: meal.mealRecipe,
             subTitleFontSize: 15,
