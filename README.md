@@ -24,9 +24,31 @@ It integrates with **Firebase** for authentication and data storage and **TheMea
   - ❤️ Mark as Favorite
 - All actions are synced with **Firebase** collections based on the logged-in user’s ID.
 
+
 ### 🍽 Suggested Meals
 - Fetch meals dynamically from **TheMealDB API**.
 - Displays a curated list of meal suggestions for inspiration.
+
+### 🍴 Meal Description View
+- A detailed screen for each meal containing:
+  - 🧂 **Ingredients**
+  - 📜 **Instructions**
+  - 🧮 **Nutrition Summary**
+  - 🖼️ **Meal Image**
+- Built using **Clean Architecture** and **Cubit** for state management.
+- Includes a fixed **🎥 “Watch Recipe Video”** button that allows the user to view the recipe video fetched from the API.
+- Smooth scroll behavior with a **floating button** overlay.
+
+### 🧠 Nutrition Summary (Spoonacular API Integration)
+- Integrated **Spoonacular API** for advanced nutritional data.
+- Uses the **Recipe Analyze Endpoint** to fetch accurate nutrient breakdown:
+  - Calories
+  - Protein
+  - Fat
+  - Carbohydrates
+  - Sugar
+- Data displayed inside a clean, responsive **NutritionSummary widget**.
+- Replaces or complements TheMealDB data for better precision.
 
 ### 🛍 Cart Management
 - Items can be added/removed from the cart.
@@ -105,7 +127,7 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 | **State Management** | Bloc / Cubit |
 | **Backend** | Firebase Firestore |
 | **Authentication** | Firebase Auth (Google, Facebook) |
-| **API** | TheMealDB API |
+| **API** | TheMealDB API, SpoonAcular API |
 | **Architecture** | Clean Architecture |
 | **Design Pattern** | Repository Pattern |
 
@@ -133,9 +155,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Meal Categories | Meals View |  
-|:---------------:|:----------:|  
-| ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) |  
+| Meal Categories |    Meals View   | Meal Description |    Fav Meals    |
+|:---------------:|:---------------:|:----------------:|:---------------:|
+| ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) |  
 
 ---
 ## 🚀 Upcoming Features
