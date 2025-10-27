@@ -1,4 +1,4 @@
-# 🛒 Meal Planning App
+# 🛒 Meal Planning App(PlaniShop)
 
 A **Flutter** application built with **Clean Architecture** that helps users plan their meals, manage grocery lists, and explore suggested recipes.  
 It integrates with **Firebase** for authentication and data storage and **TheMealDB API** for fetching suggested meals.
