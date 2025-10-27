@@ -58,49 +58,86 @@ class RoundedRectangleNetworkImageContainer extends StatelessWidget {
     this.height,
     this.width,
     this.isBordered = true,
+    this.isPadded = true,
   });
   final String? image;
   final double? height;
   final double? width;
   final bool? isBordered;
+  final bool? isPadded;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        height:
-            height != null
-                ? (SizeConfig.defaultSize! * height!)
-                : (SizeConfig.defaultSize! * 11),
-        width:
-            width != null
-                ? (SizeConfig.defaultSize! * width!)
-                : (SizeConfig.defaultSize! * 20),
-        constraints: BoxConstraints(),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          border:
-              isBordered!
-                  ? Border.all(color: kMainColor)
-                  : Border.all(color: Colors.white),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.network(
-            image!,
-            fit: BoxFit.cover,
-            width:
-                width != null
-                    ? (SizeConfig.defaultSize! * width!)
-                    : (SizeConfig.defaultSize! * 20),
+    return isPadded!
+        ? Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
             height:
                 height != null
                     ? (SizeConfig.defaultSize! * height!)
                     : (SizeConfig.defaultSize! * 11),
+            width:
+                width != null
+                    ? (SizeConfig.defaultSize! * width!)
+                    : (SizeConfig.defaultSize! * 20),
+            constraints: BoxConstraints(),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+              border:
+                  isBordered!
+                      ? Border.all(color: kMainColor)
+                      : Border.all(color: Colors.white),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                image!,
+                fit: BoxFit.cover,
+                width:
+                    width != null
+                        ? (SizeConfig.defaultSize! * width!)
+                        : (SizeConfig.defaultSize! * 20),
+                height:
+                    height != null
+                        ? (SizeConfig.defaultSize! * height!)
+                        : (SizeConfig.defaultSize! * 11),
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        )
+        : Container(
+          height:
+              height != null
+                  ? (SizeConfig.defaultSize! * height!)
+                  : (SizeConfig.defaultSize! * 11),
+          width:
+              width != null
+                  ? (SizeConfig.defaultSize! * width!)
+                  : (SizeConfig.defaultSize! * 20),
+          constraints: BoxConstraints(),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(10),
+            border:
+                isBordered!
+                    ? Border.all(color: kMainColor)
+                    : Border.all(color: Colors.white),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              image!,
+              fit: BoxFit.cover,
+              width:
+                  width != null
+                      ? (SizeConfig.defaultSize! * width!)
+                      : (SizeConfig.defaultSize! * 20),
+              height:
+                  height != null
+                      ? (SizeConfig.defaultSize! * height!)
+                      : (SizeConfig.defaultSize! * 11),
+            ),
+          ),
+        );
   }
 }

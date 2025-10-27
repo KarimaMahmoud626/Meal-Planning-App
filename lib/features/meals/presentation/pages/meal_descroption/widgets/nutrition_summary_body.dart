@@ -10,7 +10,6 @@ class NutritionSummaryBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      // color: kMainColor.withOpacity(0.1),
       color: Color(0xFFF2F9F7),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,
@@ -33,9 +32,18 @@ class NutritionSummaryBody extends StatelessWidget {
                     ),
                     VerticalSpace(1),
                     Text(
-                      nutrient.amount.toString(),
+                      (nutrient.amount).toString(),
                       style: const TextStyle(
                         fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    VerticalSpace(0.3),
+                    Text(
+                      nutrient.unit,
+                      style: const TextStyle(
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),

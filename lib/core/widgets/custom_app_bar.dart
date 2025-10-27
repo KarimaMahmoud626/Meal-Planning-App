@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/core/widgets/custom_search_bar.dart';
 import 'package:meal_planning_app/core/widgets/user_profile.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -53,56 +55,118 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SimpleAppBar({super.key, required this.pageName});
+  const SimpleAppBar({
+    super.key,
+    required this.pageName,
+    this.withFavButton = false,
+  });
 
   final String pageName;
+  final bool? withFavButton;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: SizeConfig.defaultSize! * 13,
-      child: Container(
-        decoration: BoxDecoration(
-          color: kMainColor,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 24.0),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 22,
-                  color: Colors.white,
-                ),
+    return withFavButton!
+        ? SizedBox(
+          height: SizeConfig.defaultSize! * 13,
+          child: Container(
+            decoration: BoxDecoration(
+              color: kMainColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
               ),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    pageName,
-                    style: const TextStyle(
-                      fontSize: 28,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 22,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
                   ),
-                ),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        pageName,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
+                  // const SizedBox(width: 48),
+                  IconButton(
+                    onPressed: () {
+                      Get.to(
+                        () => FavMealsView(),
+                        duration: Duration(milliseconds: 500),
+                        transition: getx.Transition.rightToLeft,
+                      );
+                    },
+                    icon: Icon(Icons.favorite, size: 32, color: Colors.white),
+                  ),
+                  HorizontalSpace(1),
+                ],
               ),
-              const SizedBox(width: 48),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        )
+        : SizedBox(
+          height: SizeConfig.defaultSize! * 13,
+          child: Container(
+            decoration: BoxDecoration(
+              color: kMainColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 22,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        pageName,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 48),
+                ],
+              ),
+            ),
+          ),
+        );
   }
 
   @override

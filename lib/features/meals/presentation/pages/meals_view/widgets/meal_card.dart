@@ -64,7 +64,7 @@ class MealCard extends StatelessWidget {
               ),
               onPressed: () {
                 Get.to(
-                  () => MealDescriptionView(mealId: meal.mealId),
+                  () => MealDescriptionView(meal: meal),
                   duration: const Duration(milliseconds: 500),
                   transition: getx.Transition.rightToLeft,
                 );
