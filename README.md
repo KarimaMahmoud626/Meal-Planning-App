@@ -155,7 +155,7 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Meal Categories |    Meals View   | Meal Description |    Fav Meals    |
+| Meal Categories | Meals View | Meal Description | Fav Meals |
 |:---------------:|:---------------:|:----------------:|:---------------:|
 | ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) |  
 
