@@ -126,8 +126,8 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 | **Frontend** | Flutter (Dart) |
 | **State Management** | Bloc / Cubit |
 | **Backend** | Firebase Firestore |
-| **Authentication** | Firebase Auth (Google, Facebook) |
-| **API** | TheMealDB API, SpoonAcular API |
+| **Authentication** | Firebase Auth (Google, Facebook) |  
+| **API** | TheMealDB API, SpoonAcular API |  
 | **Architecture** | Clean Architecture |
 | **Design Pattern** | Repository Pattern |
 
@@ -143,7 +143,7 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Login 1 | Login 2 |   Cart   | Favorites |  
+| Login 1 | Login 2 | CartView | Favorites |  
 |:-------:|:-------:|:--------:|:---------:|
 | ![Login1](assets/screens/login1.jpg) | ![Login2](assets/screens/login2.jpg) | ![Cart](assets/screens/cart.jpg) | ![Favorites](assets/screens/favorites.jpg) |  
 
@@ -155,8 +155,8 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Meal Categories | Meals View | Meal Description | Fav Meals |
-|:---------------:|:---------------:|:----------------:|:---------------:|
+| Categories | MealView | Description | FavMeals |
+|:----------:|:--------:|:-----------:|:--------:|
 | ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) |  
 
 ---
