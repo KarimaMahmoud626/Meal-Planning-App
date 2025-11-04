@@ -133,9 +133,7 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-## 📸 Screenshots
-
-### 🖼 App Preview
+## 🖼 App Preview
 
 | Splash_View | Onboarding 1 | Onboarding 2 | Onboarding 3 | Onboarding 4 |  
 |:------------:|:------------:|:------------:|:------------:|:------------:|
