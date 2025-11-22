@@ -9,13 +9,16 @@ It integrates with **Firebase** for authentication and data storage and **TheMea
 
 ### 🏁 Splash Screen
 - A beautiful animated **Splash View** that introduces the app.
-- Checks user authentication state:
-  - If logged in → navigates to Home.
-  - If not → navigates to Onboarding or Login screen.
-- Built with **Cubit** for state handling and navigation control.
 
 ### 🧭 Onboarding
-- A smooth onboarding experience introducing the app’s main features.  
+- A smooth onboarding experience introducing the app’s main features.
+
+### Login With Screen  
+- Has two login with buttons, one for login with google and another for login with facebook
+- Checks user authentication state:
+  - If logged in → navigates to Home.
+  - If not → navigates to Compelete User Information Screen.
+- Built with **Cubit** for state handling and navigation control.
 
 ### 🧾 Grocery Module
 - Fetch grocery items categorized by type from **Firestore**.
@@ -141,9 +144,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Login 1 | Login 2 | CartView | Favorites |
-|:-------:|:-------:|:--------:|:---------:|
-| ![Login1](assets/screens/login1.jpg) | ![Login2](assets/screens/login2.jpg) | ![Cart](assets/screens/cart.jpg) | ![Favorites](assets/screens/favorites.jpg) |  
+| LoginWith | CompeleteInfo | CartView |   
+|:---------:|:-------------:|:--------:|
+| ![LoginWith](assets/screens/login_with.jpg) | ![CompeleteInfo](assets/screens/compelete_info.jpg) | ![Cart](assets/screens/cart.jpg) |  
 
 ---
 
@@ -153,9 +156,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Categories | MealView | Description | FavMeals |
-|:----------:|:--------:|:-----------:|:--------:|
-| ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) |  
+| SuggestedMeals | Categories | MealView | Description | FavMeals |
+|:--------------:|:----------:|:--------:|:-----------:|:--------:|
+| ![SuggestedMeals](assets/screens/suggested_meals.jpg) | ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) |  
 
 ---
 ## 🚀 Upcoming Features
