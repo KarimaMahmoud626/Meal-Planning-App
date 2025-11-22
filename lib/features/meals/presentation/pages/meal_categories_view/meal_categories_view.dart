@@ -12,6 +12,7 @@ class MealCategoriesView extends StatelessWidget {
     return BlocProvider(
       create: (context) => MealsCubit(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: SimpleAppBar(pageName: 'Meal Categories'),
         body: MealCategoriesViewBody(),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
+import 'package:meal_planning_app/core/widgets/bottom_nav_bar.dart';
 import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
@@ -18,15 +19,26 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is AuthSuccess) {
-          Get.to(
-            () => BlocProvider.value(
-              value: context.read<AuthCubit>(),
-              child: CompeleteInformationView(),
-            ),
-            duration: const Duration(milliseconds: 500),
-            transition: getx.Transition.rightToLeft,
-          );
+        if (state is LoginWithGoogleSuccess) {
+          print(state);
+          if (state.isNew!) {
+            Get.to(
+              () => BlocProvider.value(
+                value: context.read<AuthCubit>(),
+                child: CompeleteInformationView(),
+              ),
+              duration: const Duration(milliseconds: 500),
+              transition: getx.Transition.rightToLeft,
+            );
+          } else {
+            Get.to(
+              () => BottomNavContainer(),
+              duration: const Duration(milliseconds: 500),
+              transition: getx.Transition.rightToLeft,
+            );
+          }
+        } else if (state is AuthFailure) {
+          print(state.message);
         }
       },
       builder: (context, state) {
@@ -75,8 +87,10 @@ class LoginViewBody extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: CustomLoginWithButton(
                       onTap: () async {
+                        print('before f');
                         final authCubit = context.read<AuthCubit>();
                         await authCubit.loginWithFacebook();
+                        print('after facebook');
                       },
                       text: 'Login with',
                       iconColor: Color(0xFF4267B2),

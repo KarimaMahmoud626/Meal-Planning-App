@@ -6,6 +6,6 @@ class MealCategoriesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MealCategoriesList();
+    return SingleChildScrollView(child: MealCategoriesList());
   }
 }

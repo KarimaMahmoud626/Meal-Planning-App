@@ -24,7 +24,7 @@ class _CustomIconButtonState extends State<MealFavButton> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FavMealsCubit, FavMealsState>(
+    return BlocBuilder<FavMealsCubit, FavMealsState>(
       builder: (context, state) {
         bool isInFav = false;
         if (state is FavMealsLoaded) {
@@ -45,6 +45,9 @@ class _CustomIconButtonState extends State<MealFavButton> {
             size: widget.iconSize,
           ),
           onPressed: () async {
+            setState(() {
+              isSelected = !isSelected;
+            });
             print('Fav button pressed for meal: ${widget.meal.mealName}');
 
             final favCubit = context.read<FavMealsCubit>();
@@ -56,7 +59,6 @@ class _CustomIconButtonState extends State<MealFavButton> {
           },
         );
       },
-      listener: (BuildContext context, FavMealsState state) {},
     );
   }
 }

@@ -86,7 +86,7 @@ class RoundedRectangleNetworkImageContainer extends StatelessWidget {
               border:
                   isBordered!
                       ? Border.all(color: kMainColor)
-                      : Border.all(color: Colors.white),
+                      : Border.all(color: Colors.transparent),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -121,7 +121,7 @@ class RoundedRectangleNetworkImageContainer extends StatelessWidget {
             border:
                 isBordered!
                     ? Border.all(color: kMainColor)
-                    : Border.all(color: Colors.white),
+                    : Border.all(color: Colors.transparent),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),

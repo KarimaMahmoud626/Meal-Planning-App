@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
 import 'package:meal_planning_app/features/meals/presentation/pages/meals_view/meals_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_categories_view/widgets/meal_category_button.dart';
 
 class MealCategoriesList extends StatelessWidget {
-  MealCategoriesList({super.key});
+  MealCategoriesList({super.key, this.numberOfCategories = 13});
+
+  final int? numberOfCategories;
 
   final List<String> categoryImageList = [
     'https://i.pinimg.com/736x/41/b2/c6/41b2c6ae404d870a60b8272af91da59f.jpg',
@@ -44,14 +45,15 @@ class MealCategoriesList extends StatelessWidget {
     return GridView.builder(
       scrollDirection: Axis.vertical,
       padding: const EdgeInsets.all(4),
-      physics: BouncingScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 2,
         crossAxisSpacing: 2,
         childAspectRatio: 0.9,
       ),
-      itemCount: categoryNameList.length,
+      itemCount: numberOfCategories,
       itemBuilder: (context, index) {
         return MealCategoryButton(
           onPressed: () {

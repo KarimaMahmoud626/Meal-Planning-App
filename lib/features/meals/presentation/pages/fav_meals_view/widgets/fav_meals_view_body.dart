@@ -17,8 +17,7 @@ class FavMealsViewBody extends StatelessWidget {
           return GridView.builder(
             scrollDirection: Axis.vertical,
             padding: const EdgeInsets.all(4),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 2,
@@ -28,11 +27,20 @@ class FavMealsViewBody extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
-              return FavMealsCard(
-                item: item,
-                onPressed: () async {
-                  await context.read<FavMealsCubit>().removeMeal(item);
-                },
+              return GestureDetector(
+                // onTap: (){
+
+                //   Get.to(
+                //   () => MealDescriptionView(meal: items[index].),
+                //   duration: const Duration(milliseconds: 500),
+                //   transition: getx.Transition.rightToLeft,
+                // );},
+                child: FavMealsCard(
+                  item: item,
+                  onPressed: () async {
+                    await context.read<FavMealsCubit>().removeMeal(item);
+                  },
+                ),
               );
             },
           );

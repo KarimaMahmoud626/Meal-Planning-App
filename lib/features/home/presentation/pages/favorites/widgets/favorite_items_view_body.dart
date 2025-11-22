@@ -4,7 +4,9 @@ import 'package:meal_planning_app/features/home/presentation/manager/cubits/favo
 import 'package:meal_planning_app/features/home/presentation/pages/favorites/widgets/fav_items_list.dart';
 
 class FavoriteItemsViewBody extends StatelessWidget {
-  const FavoriteItemsViewBody({super.key});
+  const FavoriteItemsViewBody({super.key, this.isHorizontal = true});
+
+  final bool? isHorizontal;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,9 @@ class FavoriteItemsViewBody extends StatelessWidget {
         } else if (state is FavError) {
           return Center(child: Text(state.errorMessage));
         } else if (state is FavEmpty) {
-          return Center(child: Text('Your Cart is Empty'));
+          return Center(child: Text('Your Fav List is Empty'));
         } else {
-          return Center(child: Text(''));
+          return Center(child: Text('Something wrong happened'));
         }
       },
     );

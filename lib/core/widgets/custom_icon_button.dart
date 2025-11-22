@@ -20,7 +20,7 @@ class CustomIconButton extends StatelessWidget {
   final IconData? selectedIcon;
   final Color? iconColor;
   final Color? selectedIconColor;
-  final double? iconSize;
+  final double iconSize;
   final void Function()? onPressed;
   final bool? isSelected;
   final double? height;
@@ -28,12 +28,21 @@ class CustomIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double radius = iconSize * 0.7;
     return Container(
       height: height,
       width: width,
       decoration: BoxDecoration(
         color: buttonColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(radius),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            offset: const Offset(0, 4),
+            blurRadius: 6,
+            spreadRadius: 1,
+          ),
+        ],
       ),
       child: IconButton(
         isSelected: isSelected ?? false,

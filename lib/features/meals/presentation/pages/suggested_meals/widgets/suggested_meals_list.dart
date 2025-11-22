@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/suggested_meal_card.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/suggested_meals/widgets/suggested_meal_card.dart';
 
-class SuggestedMealsView extends StatelessWidget {
-  const SuggestedMealsView({super.key});
+class SuggestedMealsList extends StatelessWidget {
+  const SuggestedMealsList({super.key});
 
   @override
   Widget build(BuildContext context) {

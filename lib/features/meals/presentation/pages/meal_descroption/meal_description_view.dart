@@ -20,6 +20,7 @@ class MealDescriptionView extends StatelessWidget {
         BlocProvider(create: (_) => FavMealsCubit()..getFavMeals()),
       ],
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: MealDescriptionViewBody(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: CustomFloatingActionButton(

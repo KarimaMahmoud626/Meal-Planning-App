@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/core/widgets/custom_search_bar.dart';
 import 'package:meal_planning_app/core/widgets/user_profile.dart';
+import 'package:meal_planning_app/features/meal_planner/presentation/pages/plans_view/plan_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -31,9 +31,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Row(
               children: [
                 UserProfile(),
-                HorizontalSpace(7),
+                Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(
+                      () => PlanView(),
+                      duration: Duration(milliseconds: 500),
+                      transition: getx.Transition.leftToRight,
+                    );
+                  },
                   icon: Icon(
                     Icons.calendar_month,
                     size: 32,
@@ -59,19 +65,21 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.pageName,
     this.withFavButton = false,
+    this.withDefaultColor = true,
   });
 
   final String pageName;
-  final bool? withFavButton;
+  final bool withFavButton;
+  final bool withDefaultColor;
 
   @override
   Widget build(BuildContext context) {
-    return withFavButton!
+    return withFavButton
         ? SizedBox(
           height: SizeConfig.defaultSize! * 13,
           child: Container(
             decoration: BoxDecoration(
-              color: kMainColor,
+              color: withDefaultColor ? kMainColor : Colors.transparent,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -88,7 +96,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
                     icon: Icon(
                       Icons.arrow_back_ios_new,
                       size: 22,
-                      color: Colors.white,
+                      color: withDefaultColor ? Colors.white : kMainColor,
                     ),
                   ),
                   Expanded(

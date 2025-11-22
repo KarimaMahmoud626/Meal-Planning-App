@@ -7,6 +7,10 @@ class FavoriteItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: CustomAppBar(), body: FavoriteItemsViewBody());
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: SimpleAppBar(pageName: 'Fav Grocery Items'),
+      body: FavoriteItemsViewBody(isHorizontal: false),
+    );
   }
 }

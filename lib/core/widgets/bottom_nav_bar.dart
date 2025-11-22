@@ -2,43 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
+import 'package:meal_planning_app/features/Auth/data/repositories/auth_repo_impl.dart';
+import 'package:meal_planning_app/features/Auth/domain/usecases/get_user_data_use_case.dart';
+import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/cart_cubit/cubit/cart_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/favorite_cubit/cubit/favorite_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/grocerry_items_cubit/cubit/grocerry_items_cubit.dart';
+import 'package:meal_planning_app/features/meals/presentation/manager/fav_meals_cubit/cubit/fav_meals_cubit.dart';
+import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/suggested_meals/suggested_meals_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/home_view.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/cart/cart_view.dart';
-import 'package:meal_planning_app/features/home/presentation/pages/favorites/favorite_items_view.dart';
 
 class BottomNavContainer extends StatelessWidget {
   BottomNavContainer({super.key});
 
   final PersistentTabController _controller = PersistentTabController(
-    initialIndex: 0,
+    initialIndex: 1,
   );
 
   List<Widget> _buildScreens() {
-    return [const HomeView(), const CartView(), const FavoriteItemsView()];
+    return [
+      const CartView(),
+      const HomeView(),
+      const SuggestedMealsView(),
+      const FavMealsView(),
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
-        title: ("Home"),
-        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        activeColorPrimary: kMainColor,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.shopping_cart),
+        icon: const Icon(Icons.shopping_cart_outlined),
         title: ("Cart"),
         textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         activeColorPrimary: kMainColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.favorite),
+        icon: const Icon(Icons.category_outlined),
+        title: ("Grocery"),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        activeColorPrimary: kMainColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.fastfood_outlined),
+        title: ("Meals"),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        activeColorPrimary: kMainColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.favorite_outlined),
         title: ("Favorites"),
         textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         activeColorPrimary: kMainColor,
@@ -49,6 +67,7 @@ class BottomNavContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repo = AuthRepoImpl();
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -57,6 +76,14 @@ class BottomNavContainer extends StatelessWidget {
         ),
         BlocProvider(create: (context) => CartCubit()..getCartItems()),
         BlocProvider(create: (context) => FavouriteCubit()..getFavItems()),
+        BlocProvider(
+          create:
+              (context) =>
+                  AuthCubit(getUserDataUseCase: GetUserDataUseCase(repo))
+                    ..getUserData(),
+        ),
+        BlocProvider(create: (context) => FavMealsCubit()..getFavMeals()),
+        BlocProvider(create: (context) => MealsCubit()..getSuggestedMeals(4)),
       ],
       child: PersistentTabView(
         context,

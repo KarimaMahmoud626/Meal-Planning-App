@@ -1,16 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:get/get.dart' as getx;
 import 'package:get/get_core/src/get_main.dart';
 import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
-import 'package:meal_planning_app/features/Auth/data/repositories/auth_repo_impl.dart';
-import 'package:meal_planning_app/features/Auth/domain/models/user_model.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_state.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/widgets/compelete_info_item.dart';
 import 'package:meal_planning_app/core/widgets/bottom_nav_bar.dart';
+import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/widgets/custom_drop_down_list.dart';
 
 class CompeleteInformationViewBody extends StatefulWidget {
   const CompeleteInformationViewBody({super.key});
@@ -22,8 +21,8 @@ class CompeleteInformationViewBody extends StatefulWidget {
 
 class _CompeleteInformationViewBodyState
     extends State<CompeleteInformationViewBody> {
-  AuthRepoImpl? authRepo;
-  String? name, phoneNumber, address;
+  String? gender;
+  num? age, height, weight;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -47,48 +46,67 @@ class _CompeleteInformationViewBodyState
               child: Column(
                 children: [
                   VerticalSpace(10),
-                  CompeleteInfoItem(
-                    text: 'Enter Your Name',
-                    onSaved: (value) {
-                      name = value;
+                  CustomDropDownList(
+                    icon: Icons.person,
+                    text: 'Select your gender',
+                    hint: 'choose gender...',
+                    items: const [
+                      DropdownMenuItem(value: 'Female', child: Text('Female')),
+                      DropdownMenuItem(value: 'Male', child: Text('Male')),
+                    ],
+                    onChanged: (value) {
+                      gender = value;
                     },
-                    icon: Icons.supervised_user_circle,
+                    validator: (value) {
+                      if (value == null) return 'Gender is required';
+                      return null;
+                    },
                   ),
                   VerticalSpace(2),
                   CompeleteInfoItem(
-                    text: 'Enter Your Phone Number',
+                    text: 'Enter Your Height (cm)',
+                    keyboardType: TextInputType.number,
                     onSaved: (value) {
-                      phoneNumber = value;
+                      height = num.tryParse(value ?? "") ?? 0;
                     },
-                    icon: Icons.phone,
+                    icon: FontAwesomeIcons.ruler,
+                    validator:
+                        (value) =>
+                            value == null || value.isEmpty ? "Required" : null,
                   ),
                   VerticalSpace(2),
                   CompeleteInfoItem(
-                    text: 'Enter Your Address',
+                    text: 'Enter Your Weight (kgm)',
                     onSaved: (value) {
-                      address = value;
+                      weight = num.tryParse(value ?? "") ?? 0;
                     },
-                    maxLines: 5,
-                    icon: Icons.location_on,
+                    icon: Icons.scale,
+                    validator:
+                        (value) =>
+                            value == null || value.isEmpty ? 'Required' : null,
+                  ),
+                  VerticalSpace(2),
+                  CompeleteInfoItem(
+                    text: 'Enter Your Age',
+                    onSaved: (value) {
+                      age = num.tryParse(value ?? "") ?? 0;
+                    },
+                    icon: FontAwesomeIcons.clock,
+                    validator:
+                        (value) =>
+                            value == null || value.isEmpty ? 'Required' : null,
                   ),
                   VerticalSpace(5),
                   CustomLoginButton(
                     isLoading: state is AuthLoading ? true : false,
                     onTap: () {
-                      final currentUser = FirebaseAuth.instance.currentUser!;
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        var userModel = UserModel(
-                          email: currentUser.email,
-                          name: name,
-                          phoneNumber: phoneNumber,
-                          address: address,
-                        );
                         context.read<AuthCubit>().compeleteInformation(
-                          userModel,
-                          name ?? '',
-                          phoneNumber ?? '',
-                          address ?? '',
+                          gender: gender,
+                          height: height,
+                          weight: weight,
+                          age: age,
                         );
                       }
                     },

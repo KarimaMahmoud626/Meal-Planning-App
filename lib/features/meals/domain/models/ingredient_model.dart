@@ -5,7 +5,7 @@ class IngredientModel extends Equatable {
   final String ingredientName;
   final String ingredientMeasure;
 
-  IngredientModel({
+  const IngredientModel({
     required this.ingredientName,
     required this.ingredientMeasure,
   });

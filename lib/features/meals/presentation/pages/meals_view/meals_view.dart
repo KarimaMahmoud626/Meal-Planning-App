@@ -15,6 +15,7 @@ class MealsView extends StatelessWidget {
       create: (context) => MealsCubit()..getMealsByCategory(categoryName),
 
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: SimpleAppBar(pageName: categoryName, withFavButton: true),
         body: MealsViewBody(),
       ),
