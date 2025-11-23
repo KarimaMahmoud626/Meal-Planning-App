@@ -1,72 +1,160 @@
-# 🛒 Meal Planning App(PlaniShop)
+# 🛒 **PlaniShop – Meal Planning & Grocery Management App**
+PlaniShop is a **Flutter** application built using **Clean Architecture**, designed to help users plan their meals, manage grocery lists, track daily calories, and explore suggested recipes.  
+It integrates:
 
-A **Flutter** application built with **Clean Architecture** that helps users plan their meals, manage grocery lists, and explore suggested recipes.  
-It integrates with **Firebase** for authentication and data storage and **TheMealDB API** for fetching suggested meals.
+- **Firebase Authentication**  
+- **Firebase Firestore**  
+- **TheMealDB API** for meal suggestions  
+- **Spoonacular API** for advanced nutritional analysis  
 
 ---
 
-## 🚀 Features
+# 🚀 **Features**
 
-### 🏁 Splash Screen
-- A beautiful animated **Splash View** that introduces the app.
-- Checks user authentication state:
-  - If logged in → navigates to Home.
-  - If not → navigates to Onboarding or Login screen.
-- Built with **Cubit** for state handling and navigation control.
+## 🏁 **Splash Screen**
+A clean, animated splash experience that introduces the app on startup.
 
-### 🧭 Onboarding
-- A smooth onboarding experience introducing the app’s main features.  
+- Smooth fade-in animation  
+- Automatic navigation to the Onboarding flow or Home (depending on auth state)
 
-### 🧾 Grocery Module
-- Fetch grocery items categorized by type from **Firestore**.
-- Each item supports:
-  - ✅ Add to Cart
-  - ❤️ Mark as Favorite
-- All actions are synced with **Firebase** collections based on the logged-in user’s ID.
+---
 
+## 🧭 **Onboarding**
+A multi-screen onboarding flow introducing the main capabilities of PlaniShop:
 
-### 🍽 Suggested Meals
-- Fetch meals dynamically from **TheMealDB API**.
-- Displays a curated list of meal suggestions for inspiration.
+- How to browse groceries  
+- How to explore meals  
+- Nutrition tracking  
+- Favorites  
+- Personalized meal planning  
 
-### 🍴 Meal Description View
-- A detailed screen for each meal containing:
-  - 🧂 **Ingredients**
-  - 📜 **Instructions**
-  - 🧮 **Nutrition Summary**
-  - 🖼️ **Meal Image**
-- Built using **Clean Architecture** and **Cubit** for state management.
-- Includes a fixed **🎥 “Watch Recipe Video”** button that allows the user to view the recipe video fetched from the API.
-- Smooth scroll behavior with a **floating button** overlay.
+Created to help new users understand the app quickly and clearly.
 
-### 🧠 Nutrition Summary (Spoonacular API Integration)
-- Integrated **Spoonacular API** for advanced nutritional data.
-- Uses the **Recipe Analyze Endpoint** to fetch accurate nutrient breakdown:
-  - Calories
-  - Protein
-  - Fat
-  - Carbohydrates
-  - Sugar
-- Data displayed inside a clean, responsive **NutritionSummary widget**.
-- Replaces or complements TheMealDB data for better precision.
+---
 
-### 🛍 Cart Management
-- Items can be added/removed from the cart.
-- Cart items are stored in a dedicated Firestore collection under the current user’s ID.
-- Real-time updates and state management handled using **Cubit (Bloc)**.
+## 🔐 **Authentication (Google / Facebook / Email)**
+The app uses **Firebase Authentication** with:
 
-### ❤️ Favorites
-- Users can mark grocery items as favorites.
-- Stored in a user-specific Firestore collection.
-- Easily accessible in the Favorites view.
+- Login with Google  
+- Login with Facebook  
+- Email + Password login  
 
-### 👤 Authentication
-- Firebase Authentication integrated.
-- Supports:
-  - 📧 Email/Password Login
-  - 🔵 Google Login
-  - 🔵 Facebook Login
-- Securely handles user sessions and data isolation.
+### Authentication Flow:
+1. App checks the Firebase login response.  
+2. If `isNewUser = false` → navigate directly to **Home**.  
+3. If `isNewUser = true` → navigate to **Complete User Information Screen** to gather essential health data.
+
+This ensures personalized meal planning from day one.
+
+---
+
+## 👤 **Complete User Information Screen**
+This screen is displayed only for new users.
+
+### Users must provide:
+- **Gender** (Male / Female) — via a dropdown  
+- **Height** in cm  
+- **Weight** in kg  
+- **Age** in years  
+
+### What happens next:
+1. The app calculates the user’s **daily calorie requirement (BMR)**.  
+2. All values are saved in Firestore under `users/{uid}`.  
+3. The calculated calories are used in all future **meal planning features**.
+
+---
+
+## 🔢 **Calorie Calculation (BMR)**
+PlaniShop uses standard BMR equations.
+
+### For Males:
+- BMR = 10 * weight + 6.25 * height - 5 * age + 5
+### For Females:
+- BMR = 10 * weight + 6.25 * height - 5 * age - 161
+  
+The resulting calorie value is stored in Firestore and becomes the limit for generating daily meal plans.
+
+## 🧾 **Grocery Module**
+Fetches grocery items categorized by type from Firestore.
+
+### Each item supports:
+- **Add to Cart**
+- **Mark as Favorite**
+
+### Technical Behavior:
+- Every action updates Firestore in real-time  
+- All data is isolated to the authenticated user using their Firebase `uid`  
+- Cubit manages the entire state (loading → success → error)
+
+---
+
+## 🍽 **Suggested Meals (TheMealDB)**
+Displays a list of recommended meals retrieved from **TheMealDB API**:
+
+- Daily recommended meals  
+- Category-based browsing (Beef, Poultry, Breakfast, etc.)  
+- Eye-catching cards with images + meal names  
+
+---
+
+## 🍴 **Meals List & Categories**
+Selecting a category loads all meals belonging to that category.
+
+Each meal card contains:
+- Meal image  
+- Meal name  
+- Tap → Meal Description View  
+
+---
+
+## 📖 **Meal Description View**
+A detailed screen that shows everything about the selected meal.
+
+### Includes:
+- 🖼 High-quality meal image  
+- 🧂 List of ingredients  
+- 📜 Cooking instructions  
+- 🧮 Nutrition Summary  
+- 🎥 Button: **“Watch Recipe Video”** (opens YouTube link)
+
+### Additional UX Features:
+- Floating button for recipe video  
+- Smooth scrolling  
+- Built with Clean Architecture + Cubit  
+
+---
+
+## 🧠 **Nutrition Summary (Spoonacular API)**
+Uses the **Recipe Analyze Endpoint** to calculate food nutrients with high accuracy.
+
+Returns:
+- **Calories**
+- **Protein**
+- **Fat**
+- **Carbohydrates**
+- **Sugar**
+
+These values are displayed inside a custom widget for easy interpretation.
+
+---
+
+## 🛍 **Cart Management**
+A dedicated Firestore collection for each user:
+
+- Add/remove grocery items  
+- Real-time UI updates via Cubit  
+- Auto-sync across devices  
+
+---
+
+## ❤️ **Favorites**
+Users can:
+
+- Mark grocery items as favorites  
+- Store them in `users/{uid}/favorites`  
+- Access them instantly in a separate Favorites screen  
+
+---
 
 ## 🧩 Architecture
 
@@ -141,9 +229,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Login 1 | Login 2 | CartView | Favorites |
-|:-------:|:-------:|:--------:|:---------:|
-| ![Login1](assets/screens/login1.jpg) | ![Login2](assets/screens/login2.jpg) | ![Cart](assets/screens/cart.jpg) | ![Favorites](assets/screens/favorites.jpg) |  
+| Login With | Compelete Info | Cart View |   
+|:----------:|:--------------:|:---------:|
+| ![LoginWith](assets/screens/login_with.jpg) | ![CompeleteInfo](assets/screens/compelete_info.jpg) | ![Cart](assets/screens/cart.jpg) |  
 
 ---
 
@@ -153,9 +241,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| Categories | MealView | Description | FavMeals |
-|:----------:|:--------:|:-----------:|:--------:|
-| ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) |  
+| SuggestedMeals | FavouriteMeals | MealCategories | CategoryMeals | MealDescription |
+|:--------------:|:--------------:|:--------------:|:-----------------:|:---------------:|
+| ![SuggestedMeals](assets/screens/suggested_meals.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) | ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) |  
 
 ---
 ## 🚀 Upcoming Features
