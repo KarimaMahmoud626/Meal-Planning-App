@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
-import 'package:meal_planning_app/features/meals/domain/models/fav_meal_model.dart';
-import 'package:meal_planning_app/features/meals/domain/models/ingredient_model.dart';
-import 'package:meal_planning_app/features/meals/domain/models/nutrition_request_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/fav_meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/ingredient_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/nutrition_request_model.dart';
 
 class MealModel extends Equatable {
   final String mealName;

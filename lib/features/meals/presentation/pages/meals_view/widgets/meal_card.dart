@@ -5,7 +5,7 @@ import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
-import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/meal_description_view.dart';
 
 class MealCard extends StatelessWidget {

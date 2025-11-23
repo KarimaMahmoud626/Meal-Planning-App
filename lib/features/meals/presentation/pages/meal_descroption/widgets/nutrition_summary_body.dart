@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
-import 'package:meal_planning_app/features/meals/domain/models/nutrition_response_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/nutrition_response_model.dart';
 
 class NutritionSummaryBody extends StatelessWidget {
   const NutritionSummaryBody({super.key, required this.items});

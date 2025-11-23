@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/features/meals/data/repos/meal_nutrition_repo_impl.dart';
 
-import 'package:meal_planning_app/features/meals/domain/models/nutrition_request_model.dart';
-import 'package:meal_planning_app/features/meals/domain/models/nutrition_response_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/nutrition_request_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/nutrition_response_model.dart';
 
 part 'nutrition_state.dart';
 

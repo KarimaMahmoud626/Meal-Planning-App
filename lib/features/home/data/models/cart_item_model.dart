@@ -1,33 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
-import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
 
-class FavItemModel extends Equatable {
+class CartItemModel extends Equatable {
   final String? id;
   final String? name;
   final num? price;
   final String? imageUrl;
   final num? quantity;
-  final bool liked;
 
-  const FavItemModel({
+  const CartItemModel({
     this.id,
     required this.name,
     required this.price,
     required this.imageUrl,
     this.quantity,
-    required this.liked,
   });
 
-  factory FavItemModel.fromFirestore(DocumentSnapshot doc) {
+  factory CartItemModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
-    return FavItemModel(
+    return CartItemModel(
       name: data[kName],
       price: data[kPrice],
       imageUrl: data[kImageUrl],
       quantity: data[kQuantity],
-      liked: data[kLiked],
     );
   }
 
@@ -37,37 +35,41 @@ class FavItemModel extends Equatable {
       kPrice: price,
       kImageUrl: imageUrl,
       kQuantity: quantity,
-      kLiked: liked,
     };
 
     data.removeWhere((key, value) => value == null);
     return data;
   }
 
-  toCartItem() {
-    return {kId: id, kName: name, kPrice: price, kImageUrl: imageUrl};
-  }
-
-  factory FavItemModel.fromGrocerryItem(GrocerryItemModel item) {
-    return FavItemModel(
+  factory CartItemModel.fromGrocerryItem(GrocerryItemModel item) {
+    return CartItemModel(
       id: item.id,
       name: item.name,
       price: item.price,
       imageUrl: item.imageUrl,
       quantity: 1,
-      liked: item.liked!,
     );
   }
+
+  factory CartItemModel.fromFavItem(FavItemModel item) {
+    return CartItemModel(
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      imageUrl: item.imageUrl,
+      quantity: 1,
+    );
+  }
+
   toJson() {
     return {
       kName: name,
       kPrice: price,
       kImageUrl: imageUrl,
       kQuantity: quantity,
-      kLiked: liked,
     };
   }
 
   @override
-  List<Object?> get props => [name, price, imageUrl, quantity, liked];
+  List<Object?> get props => [name, price, imageUrl, quantity];
 }

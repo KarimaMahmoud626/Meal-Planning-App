@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/features/home/data/repos/grocerry_items_repo_impl.dart';
-import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
 
 part 'grocerry_items_state.dart';
 

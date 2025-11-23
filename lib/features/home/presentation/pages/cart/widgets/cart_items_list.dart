@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/features/home/domain/models/cart_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/cart/widgets/cart_view_item_card.dart';
 
 class CartItemsList extends StatelessWidget {

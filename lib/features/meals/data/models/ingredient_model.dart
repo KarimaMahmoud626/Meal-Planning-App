@@ -10,10 +10,6 @@ class IngredientModel extends Equatable {
     required this.ingredientMeasure,
   });
 
-  // factory IngredientModel.fromJson(Map<String, dynamic> ingredientData){
-  //   return IngredientModel(ingredient: ingredientData[]);
-  // }
-
   Map<String, dynamic> toJson() => {
     kMealIngredientName: ingredientName,
     kMealIngredientMeasure: ingredientMeasure,

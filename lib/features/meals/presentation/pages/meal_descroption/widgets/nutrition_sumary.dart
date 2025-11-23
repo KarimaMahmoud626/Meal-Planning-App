@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/nutrition_cubit/cubit/nutrition_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/nutrition_summary_body.dart';
 

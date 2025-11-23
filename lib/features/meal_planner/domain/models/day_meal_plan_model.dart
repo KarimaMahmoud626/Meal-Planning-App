@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/features/meal_planner/domain/models/planner_meal_model.dart';
-import 'package:meal_planning_app/features/meals/domain/models/nutrition_response_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/nutrition_response_model.dart';
 
 class DayMealPlanModel extends Equatable {
   final List<NutritionResponseModel> dayPlanNutritionSummary;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
-import 'package:meal_planning_app/features/home/domain/models/cart_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/cart/widgets/int_counter.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
 

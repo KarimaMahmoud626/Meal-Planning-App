@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
-import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/fav_meals_cubit/cubit/fav_meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/meal_fav_button.dart';
 

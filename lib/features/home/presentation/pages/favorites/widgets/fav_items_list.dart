@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/features/home/domain/models/fav_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/favorites/widgets/favorite_item_card.dart';
 
 class FavItemsList extends StatelessWidget {

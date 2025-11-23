@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/features/meals/data/repos/fav_meal_repo_impl.dart';
-import 'package:meal_planning_app/features/meals/domain/models/fav_meal_model.dart';
-import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/fav_meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 
 part 'fav_meals_state.dart';
 

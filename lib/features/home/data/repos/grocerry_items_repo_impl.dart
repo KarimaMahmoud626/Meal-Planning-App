@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
 import 'package:meal_planning_app/features/home/domain/repos/grocerry_items_repo.dart';
 
 class FetchGrocerryItemsRepoImpl extends GrocerryItemsRepo {

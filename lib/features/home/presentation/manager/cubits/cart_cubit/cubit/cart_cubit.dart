@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/features/home/data/repos/cart_repo_impl.dart';
-import 'package:meal_planning_app/features/home/domain/models/cart_item_model.dart';
-import 'package:meal_planning_app/features/home/domain/models/fav_item_model.dart';
-import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
 
 part 'cart_state.dart';
 

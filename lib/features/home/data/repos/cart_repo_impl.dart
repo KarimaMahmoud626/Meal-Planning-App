@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meal_planning_app/core/constants.dart';
-import 'package:meal_planning_app/features/home/domain/models/cart_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart';
 import 'package:meal_planning_app/features/home/domain/repos/cart_repo.dart';
 
 class CartRepoImpl extends CartRepo {

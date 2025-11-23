@@ -4,7 +4,7 @@ import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
-import 'package:meal_planning_app/features/home/domain/models/fav_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/favorite_cubit/cubit/favorite_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/favorites/widgets/add_to_cart_from_fav.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
-import 'package:meal_planning_app/features/meals/domain/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/ingredient_list.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/meal_image_container.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/nutrition_sumary.dart';

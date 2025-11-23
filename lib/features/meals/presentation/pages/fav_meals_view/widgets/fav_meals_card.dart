@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
-import 'package:meal_planning_app/features/meals/domain/models/fav_meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/fav_meal_model.dart';
 
 class FavMealsCard extends StatelessWidget {
   const FavMealsCard({super.key, required this.item, this.onPressed});

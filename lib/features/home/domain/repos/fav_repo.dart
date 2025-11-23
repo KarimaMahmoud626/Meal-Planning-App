@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:meal_planning_app/features/home/domain/models/fav_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
 
 abstract class FavRepo {
   Future<Either<Exception, List<FavItemModel>>> getFavtData();

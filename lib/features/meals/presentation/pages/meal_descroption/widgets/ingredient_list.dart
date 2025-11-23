@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/features/meals/domain/models/ingredient_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/ingredient_model.dart';
 
 class IngredientList extends StatelessWidget {
   const IngredientList({super.key, required this.ingredients});

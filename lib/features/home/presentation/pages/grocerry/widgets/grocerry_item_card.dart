@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
-import 'package:meal_planning_app/features/home/domain/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/add_item_to_cart_button.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/grocery_item_fav_icon_button.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';
