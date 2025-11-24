@@ -4,7 +4,7 @@ import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 
 class DayCard extends StatelessWidget {
-  DayCard({super.key, required this.day, required this.isSelected});
+  const DayCard({super.key, required this.day, required this.isSelected});
 
   final DateTime day;
   final bool isSelected;

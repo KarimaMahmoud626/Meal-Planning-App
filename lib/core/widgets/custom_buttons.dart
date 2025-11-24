@@ -19,16 +19,18 @@ class CustomGeneralButton extends StatelessWidget {
           color: kMainColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Center(
-          child: Text(
-            text!,
-            style: TextStyle(
-              fontSize: 14,
-              color: const Color(0xFFFFFFFF),
-              fontWeight: FontWeight.w500,
+        child: Row(
+          children: [
+            Text(
+              text!,
+              style: TextStyle(
+                fontSize: 14,
+                color: const Color(0xFFFFFFFF),
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
-          ),
+          ],
         ),
       ),
     );
@@ -102,12 +104,12 @@ class CustomLoginButton extends StatelessWidget {
                   ? SizedBox(
                     height: 24,
                     width: 24,
-                    child: CircularProgressIndicator(color: Colors.black),
+                    child: CircularProgressIndicator(color: Colors.white),
                   )
                   : Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
