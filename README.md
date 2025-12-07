@@ -138,6 +138,22 @@ These values are displayed inside a custom widget for easy interpretation.
 
 ---
 
+## 🍱 Weekly Meal Planner (Under Development)
+
+The Meal Planner module generates a fully personalized **7-day meal plan** based on the user’s daily calorie requirement.  
+Calorie limits are calculated automatically during profile setup using user data (gender, age, height, weight), then used to generate meals through the **Spoonacular API**.
+
+### 🔧 How It Works
+- A complete weekly plan is created, with a dedicated **Breakfast**, **Lunch**, and **Dinner** for every day.
+- Users can easily navigate between days using the top horizontal day selector.
+- Each meal card shows:
+  - Meal image  
+  - Meal name  
+  - Duration  
+  - “Show Recipe” button 
+
+---
+
 ## 🛍 **Cart Management**
 A dedicated Firestore collection for each user:
 
@@ -241,11 +257,18 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-| SuggestedMeals | FavouriteMeals | MealCategories | CategoryMeals | MealDescription |
-|:--------------:|:--------------:|:--------------:|:-----------------:|:---------------:|
-| ![SuggestedMeals](assets/screens/suggested_meals.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) | ![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) |  
+| SuggestedMeals | FavouriteMeals | WeeklyMealPlan | 
+|:--------------:|:--------------:|:--------------:|
+| ![SuggestedMeals](assets/screens/suggested_meals.jpg) | ![Fav Meals](assets/screens/fav_meals.jpg) | ![Plan View](assets/screens/week_meal_plan.jpg) 
 
 ---
+
+| MealCategories | CategoryMeals | MealDescription |  
+|:--------------:|:-------------:|:---------------:|
+|![Meal Categories](assets/screens/meal_categories.jpg) | ![Meals View](assets/screens/meals_view.jpg) | ![Meal Description](assets/screens/meal_description_view.jpg) |  
+
+---
+
 ## 🚀 Upcoming Features
 
 Here are some of the planned enhancements that will be added soon:
