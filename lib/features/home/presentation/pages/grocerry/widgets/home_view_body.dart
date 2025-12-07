@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
-import 'package:meal_planning_app/core/widgets/text_row.dart';
+import 'package:meal_planning_app/core/widgets/text_with_text_button_row.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/favorites/favorite_items_view.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/favorites/widgets/favorite_items_view_body.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/grocerry/widgets/grocerry_view.dart';
@@ -15,7 +15,7 @@ class HomeViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          TextRow(
+          TextWithTextButtonRow(
             title: 'Favourites',
             onPressed: () {
               Get.to(
@@ -26,7 +26,7 @@ class HomeViewBody extends StatelessWidget {
             },
           ),
           FavoriteItemsViewBody(),
-          TextRow(title: 'Grocery'),
+          TextWithTextButtonRow(title: 'Grocery'),
           GrocerryView(),
         ],
       ),

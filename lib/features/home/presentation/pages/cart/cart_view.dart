@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/cart/widgets/cart_bottom_sheet.dart';
 import 'package:meal_planning_app/features/home/presentation/pages/cart/widgets/cart_view_body.dart';
 import 'package:meal_planning_app/core/widgets/custom_app_bar.dart';
 
@@ -11,6 +12,14 @@ class CartView extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: CustomAppBar(),
       body: CartViewBody(),
+      bottomSheet: BottomSheet(
+        backgroundColor: Colors.grey.shade100,
+        shadowColor: Colors.black,
+        onClosing: () {},
+        builder: (context) {
+          return CartBottomSheet();
+        },
+      ),
     );
   }
 }

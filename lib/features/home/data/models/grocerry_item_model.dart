@@ -10,6 +10,8 @@ class GrocerryItemModel extends Equatable {
   final bool? liked;
   final String? category;
   final String? description;
+  final num? calories;
+  final String? weight;
 
   const GrocerryItemModel({
     this.id,
@@ -19,6 +21,8 @@ class GrocerryItemModel extends Equatable {
     this.liked,
     required this.category,
     this.description,
+    this.calories,
+    this.weight,
   });
 
   factory GrocerryItemModel.fromFirestore(DocumentSnapshot doc) {
@@ -31,6 +35,8 @@ class GrocerryItemModel extends Equatable {
       liked: data[kLiked],
       category: data[kCategory],
       description: data[kDescription],
+      calories: data[kCalories],
+      weight: data[kWeight],
     );
   }
 
@@ -43,11 +49,19 @@ class GrocerryItemModel extends Equatable {
       kLiked: liked,
       kCategory: category,
       kDescription: description,
+      kCalories: calories,
+      kWeight: weight,
     };
   }
 
   toCartItem() {
-    return {kId: id, kName: name, kPrice: price, kImageUrl: imageUrl};
+    return {
+      kId: id,
+      kName: name,
+      kPrice: price,
+      kImageUrl: imageUrl,
+      kCalories: calories,
+    };
   }
 
   toFavItem() {
@@ -69,5 +83,7 @@ class GrocerryItemModel extends Equatable {
     liked,
     category,
     description,
+    calories,
+    weight,
   ];
 }

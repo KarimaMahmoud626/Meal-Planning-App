@@ -11,6 +11,7 @@ const kHeight = 'height';
 const kWeight = 'weight';
 const kAge = 'age';
 const kNeededCalories = 'calories';
+const kCalories = 'calories';
 const kCategory = 'category';
 const kImageUrl = 'imageUrl';
 const kPrice = 'price';

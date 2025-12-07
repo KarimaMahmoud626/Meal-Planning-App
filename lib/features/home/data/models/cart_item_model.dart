@@ -10,6 +10,7 @@ class CartItemModel extends Equatable {
   final num? price;
   final String? imageUrl;
   final num? quantity;
+  final num? calories;
 
   const CartItemModel({
     this.id,
@@ -17,6 +18,7 @@ class CartItemModel extends Equatable {
     required this.price,
     required this.imageUrl,
     this.quantity,
+    this.calories,
   });
 
   factory CartItemModel.fromFirestore(DocumentSnapshot doc) {
@@ -26,6 +28,7 @@ class CartItemModel extends Equatable {
       price: data[kPrice],
       imageUrl: data[kImageUrl],
       quantity: data[kQuantity],
+      calories: data[kCalories],
     );
   }
 
@@ -35,6 +38,7 @@ class CartItemModel extends Equatable {
       kPrice: price,
       kImageUrl: imageUrl,
       kQuantity: quantity,
+      kCalories: calories,
     };
 
     data.removeWhere((key, value) => value == null);
@@ -48,6 +52,7 @@ class CartItemModel extends Equatable {
       price: item.price,
       imageUrl: item.imageUrl,
       quantity: 1,
+      calories: item.calories,
     );
   }
 
@@ -67,6 +72,7 @@ class CartItemModel extends Equatable {
       kPrice: price,
       kImageUrl: imageUrl,
       kQuantity: quantity,
+      kCalories: calories,
     };
   }
 

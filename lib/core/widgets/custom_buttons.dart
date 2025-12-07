@@ -19,18 +19,16 @@ class CustomGeneralButton extends StatelessWidget {
           color: kMainColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Row(
-          children: [
-            Text(
-              text!,
-              style: TextStyle(
-                fontSize: 14,
-                color: const Color(0xFFFFFFFF),
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.left,
+        child: Center(
+          child: Text(
+            text!,
+            style: TextStyle(
+              fontSize: 14,
+              color: const Color(0xFFFFFFFF),
+              fontWeight: FontWeight.w500,
             ),
-          ],
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
