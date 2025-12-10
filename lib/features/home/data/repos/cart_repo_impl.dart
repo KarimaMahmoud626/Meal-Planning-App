@@ -55,6 +55,20 @@ class CartRepoImpl extends CartRepo {
   }
 
   @override
+  Future<void> removeAll() async {
+    final query =
+        await firestore
+            .collection('users')
+            .doc(user!.uid)
+            .collection('cart')
+            .get();
+
+    for (var doc in query.docs) {
+      await doc.reference.delete();
+    }
+  }
+
+  @override
   Future<void> updateItem(CartItemModel item, num quantity) async {
     final query =
         await firestore

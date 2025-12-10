@@ -5,9 +5,15 @@ import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/features/Auth/data/repositories/auth_repo_impl.dart';
 import 'package:meal_planning_app/features/Auth/domain/usecases/get_user_data_use_case.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
+import 'package:meal_planning_app/features/home/domain/services/cart_services.dart';
+import 'package:meal_planning_app/features/home/domain/usecases/calculate_cart_calorie_and_price_use_case.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/cart_cubit/cubit/cart_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/favorite_cubit/cubit/favorite_cubit.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/grocerry_items_cubit/cubit/grocerry_items_cubit.dart';
+import 'package:meal_planning_app/features/meal_planner/data/repos/meal_planner_repo_impl.dart';
+import 'package:meal_planning_app/features/meal_planner/domain/usecases/get_week_plan_usecase.dart';
+import 'package:meal_planning_app/features/meal_planner/presentation/manager/planner_cubit/planner_cubit.dart';
+import 'package:meal_planning_app/features/meals/domain/usecases/search_meal_use_case.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/fav_meals_cubit/cubit/fav_meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
@@ -74,7 +80,15 @@ class BottomNavContainer extends StatelessWidget {
           create:
               (context) => GrocerryItemsCubit()..getGrocerryItems('vegetables'),
         ),
-        BlocProvider(create: (context) => CartCubit()..getCartItems()),
+        BlocProvider(
+          create:
+              (context) => CartCubit(
+                calculateCalorieAndPriceUsecase:
+                    CalculateCartCalorieAndPriceUseCase(
+                      services: CartServices(),
+                    ),
+              )..getCartItems(),
+        ),
         BlocProvider(create: (context) => FavouriteCubit()..getFavItems()),
         BlocProvider(
           create:
@@ -83,7 +97,20 @@ class BottomNavContainer extends StatelessWidget {
                     ..getUserData(),
         ),
         BlocProvider(create: (context) => FavMealsCubit()..getFavMeals()),
-        BlocProvider(create: (context) => MealsCubit()..getSuggestedMeals(4)),
+        BlocProvider(
+          create:
+              (context) =>
+                  MealsCubit(searchMealUseCase: SearchMealUseCase())
+                    ..getSuggestedMeals(4),
+        ),
+        BlocProvider(
+          create:
+              (BuildContext context) => PlannerCubit(
+                getWeekPlanUsecase: GetWeekPlanUsecase(
+                  repo: MealPlannerRepoImpl(),
+                ),
+              )..getWeekPlan(),
+        ),
       ],
       child: PersistentTabView(
         context,

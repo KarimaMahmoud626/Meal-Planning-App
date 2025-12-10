@@ -4,6 +4,7 @@ import 'package:meal_planning_app/core/constants.dart';
 import 'package:meal_planning_app/features/meals/data/models/fav_meal_model.dart';
 import 'package:meal_planning_app/features/meals/data/models/ingredient_model.dart';
 import 'package:meal_planning_app/features/meals/data/models/nutrition_request_model.dart';
+import 'package:meal_planning_app/features/meals/data/models/search_meal_model.dart';
 
 class MealModel extends Equatable {
   final String mealName;
@@ -101,6 +102,10 @@ class MealModel extends Equatable {
       mealArea: mealArea ?? '',
       liked: liked ?? false,
     );
+  }
+
+  SearchMealModel toSearchMealModel() {
+    return SearchMealModel(title: mealName, id: mealId, imageUrl: mealImageUrl);
   }
 
   NutritionRequestModel toNutritionModel() {

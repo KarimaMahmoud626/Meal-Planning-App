@@ -61,6 +61,7 @@ class GrocerryItemModel extends Equatable {
       kPrice: price,
       kImageUrl: imageUrl,
       kCalories: calories,
+      kWeight: weight,
     };
   }
 

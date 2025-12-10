@@ -13,11 +13,29 @@ class CartEmpty extends CartState {}
 
 class CartLoaded extends CartState {
   final List<CartItemModel> items;
+  final double? totalCalories;
+  final double? totalPrice;
+  final double? caloriesPercent;
 
-  const CartLoaded(this.items);
+  const CartLoaded({
+    required this.items,
+    this.totalCalories,
+    this.totalPrice,
+    this.caloriesPercent,
+  });
 
-  CartLoaded copyWith({List<CartItemModel>? items}) {
-    return CartLoaded(items ?? this.items);
+  CartLoaded copyWith({
+    List<CartItemModel>? items,
+    double? totalCalories,
+    double? totalPrice,
+    double? caloriesPercent,
+  }) {
+    return CartLoaded(
+      items: items ?? this.items,
+      totalCalories: totalCalories ?? this.totalCalories,
+      totalPrice: totalPrice ?? this.totalPrice,
+      caloriesPercent: caloriesPercent ?? this.caloriesPercent,
+    );
   }
 
   @override

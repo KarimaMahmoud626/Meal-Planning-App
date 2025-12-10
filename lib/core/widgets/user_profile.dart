@@ -27,7 +27,7 @@ class UserProfile extends StatelessWidget {
               UserAvatar(),
               CustomTitleSubtitle(
                 title: state.user.name,
-                subTitle: '${state.user.neededCalories} kcal for today',
+                subTitle: '${state.user.neededCalories} cal for today',
                 titleColor: Color(0xFFFFFFFF),
                 subTitleColor: Color(0xFFFFFFFF),
               ),

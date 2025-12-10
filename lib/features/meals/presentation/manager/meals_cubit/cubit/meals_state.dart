@@ -15,7 +15,20 @@ class MealsLoaded extends MealsState {
   const MealsLoaded(this.meals);
 
   @override
-  List<Object> get props => [meals];
+  List<Object> get props {
+    return [meals];
+  }
+}
+
+class SearchMealsLoaded extends MealsState {
+  final List<SearchMealModel> meals;
+
+  const SearchMealsLoaded(this.meals);
+
+  @override
+  List<Object> get props {
+    return [meals];
+  }
 }
 
 class MealDataLoaded extends MealsState {

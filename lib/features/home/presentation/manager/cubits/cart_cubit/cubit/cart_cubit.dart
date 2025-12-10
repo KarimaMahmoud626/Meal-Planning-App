@@ -5,13 +5,15 @@ import 'package:meal_planning_app/features/home/data/repos/cart_repo_impl.dart';
 import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart';
 import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
 import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/domain/usecases/calculate_cart_calorie_and_price_use_case.dart';
 
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   final repo = CartRepoImpl(FirebaseFirestore.instance);
+  final CalculateCartCalorieAndPriceUseCase? calculateCalorieAndPriceUsecase;
 
-  CartCubit() : super(CartLoading());
+  CartCubit({this.calculateCalorieAndPriceUsecase}) : super(CartLoading());
 
   Future<void> getCartItems() async {
     final result = await repo.getCartData();
@@ -22,7 +24,24 @@ class CartCubit extends Cubit<CartState> {
       if (items.isEmpty) {
         emit(CartEmpty());
       } else {
-        emit(CartLoaded(items));
+        final calorieList = items.map((item) => item.calories).toList();
+        final priceList = items.map((item) => item.price).toList();
+        final quantityList = items.map((item) => item.quantity).toList();
+        final caloriesSum = calculateCalorieAndPriceUsecase!.calcCalories(
+          caloriesList: calorieList,
+          quantity: quantityList,
+        );
+
+        emit(
+          CartLoaded(
+            items: items,
+            totalCalories: caloriesSum,
+            totalPrice: calculateCalorieAndPriceUsecase!.calcPrice(
+              pricessList: priceList,
+              quantity: quantityList,
+            ),
+          ),
+        );
       }
     });
   }
@@ -55,6 +74,16 @@ class CartCubit extends Cubit<CartState> {
     try {
       emit(CartLoading());
       await repo.removeItemfromCart(item);
+      await getCartItems();
+    } catch (e) {
+      emit(CartError(errorMessage: e.toString()));
+    }
+  }
+
+  Future<void> removeAll() async {
+    try {
+      emit(CartLoading());
+      await repo.removeAll();
       await getCartItems();
     } catch (e) {
       emit(CartError(errorMessage: e.toString()));

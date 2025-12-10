@@ -81,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
     num? age,
   }) async {
     emit(AuthLoading());
-    final calorie = await calculateCalorieUsecase!.execute(
+    final calorie = calculateCalorieUsecase!.execute(
       profile: UserProfileEntity(
         gender: gender ?? '',
         height: height ?? 0,

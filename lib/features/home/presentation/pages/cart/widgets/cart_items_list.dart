@@ -12,6 +12,8 @@ class CartItemsList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(

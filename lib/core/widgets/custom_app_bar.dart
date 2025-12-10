@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
 import 'package:meal_planning_app/core/constants.dart';
@@ -6,6 +7,7 @@ import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/core/widgets/custom_search_bar.dart';
 import 'package:meal_planning_app/core/widgets/user_profile.dart';
+import 'package:meal_planning_app/features/meal_planner/presentation/manager/planner_cubit/planner_cubit.dart';
 import 'package:meal_planning_app/features/meal_planner/presentation/pages/plans_view/plan_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
 
@@ -35,7 +37,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 IconButton(
                   onPressed: () {
                     Get.to(
-                      () => PlanView(),
+                      () => BlocProvider.value(
+                        value: context.read<PlannerCubit>(),
+                        child: PlanView(),
+                      ),
                       duration: Duration(milliseconds: 500),
                       transition: getx.Transition.leftToRight,
                     );

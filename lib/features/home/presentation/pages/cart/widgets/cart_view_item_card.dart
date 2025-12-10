@@ -30,16 +30,34 @@ class CartViewItemCard extends StatelessWidget {
                     height: 16,
                     image: item.imageUrl,
                   ),
-                  Flexible(
-                    fit: FlexFit.loose,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: CustomTitleSubtitle(
-                        title: item.name,
-                        subTitle: '\$${item.price}',
-                        titleColor: Colors.black,
-                        subTitleColor: kMainColor,
-                      ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 0,
+                          // fit: FlexFit.loose,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: CustomTitleSubtitle(
+                              title: item.name,
+                              subTitle: '\$${item.price}',
+                              titleColor: Colors.black,
+                              subTitleColor: kMainColor,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                            ),
+                            child: Text('${item.calories}cal/${item.weight}'),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

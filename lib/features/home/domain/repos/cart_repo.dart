@@ -5,5 +5,6 @@ abstract class CartRepo {
   Future<Either<Exception, List<CartItemModel>>> getCartData();
   Future<void> addItemToCart(CartItemModel item);
   Future<void> removeItemfromCart(CartItemModel item);
+  Future<void> removeAll();
   Future<void> updateItem(CartItemModel item, num quantity);
 }
