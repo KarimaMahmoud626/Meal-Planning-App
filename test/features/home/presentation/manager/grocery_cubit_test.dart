@@ -42,7 +42,6 @@ void main() {
   blocTest<GrocerryItemsCubit, GrocerryItemsState>(
     'should emit [Loading, Error] when fetching fails',
     build: () {
-      // هنا بنقول: لما يطلب data، ارمي error
       when(
         () => mockRepository.getGrocerryData('vegetables'),
       ).thenAnswer((_) async => Left(Exception('Failed to fetch')));
