@@ -6,10 +6,8 @@ import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart
 import 'package:meal_planning_app/features/home/domain/repos/cart_repo.dart';
 
 class CartRepoImpl extends CartRepo {
-  final FirebaseFirestore firestore;
+  final firestore = FirebaseFirestore.instance;
   final user = FirebaseAuth.instance.currentUser;
-
-  CartRepoImpl(this.firestore);
 
   @override
   Future<Either<Exception, List<CartItemModel>>> getCartData() async {

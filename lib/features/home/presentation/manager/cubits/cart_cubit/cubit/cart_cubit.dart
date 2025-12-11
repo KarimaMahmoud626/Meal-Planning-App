@@ -1,21 +1,22 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meal_planning_app/features/home/data/repos/cart_repo_impl.dart';
 import 'package:meal_planning_app/features/home/data/models/cart_item_model.dart';
 import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
 import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/domain/repos/cart_repo.dart';
 import 'package:meal_planning_app/features/home/domain/usecases/calculate_cart_calorie_and_price_use_case.dart';
 
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  final repo = CartRepoImpl(FirebaseFirestore.instance);
+  final CartRepo repo;
   final CalculateCartCalorieAndPriceUseCase? calculateCalorieAndPriceUsecase;
 
-  CartCubit({this.calculateCalorieAndPriceUsecase}) : super(CartLoading());
+  CartCubit({required this.repo, this.calculateCalorieAndPriceUsecase})
+    : super(CartLoading());
 
   Future<void> getCartItems() async {
+    emit(CartLoading());
     final result = await repo.getCartData();
 
     result.fold((error) => emit(CartError(errorMessage: error.toString())), (
@@ -51,7 +52,6 @@ class CartCubit extends Cubit<CartState> {
       emit(CartLoading());
       final cartItem = CartItemModel.fromGrocerryItem(item);
       await repo.addItemToCart(cartItem);
-      // emit(CartItemAdded());
       await getCartItems();
     } catch (e) {
       emit(CartError(errorMessage: e.toString()));

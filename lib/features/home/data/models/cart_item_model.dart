@@ -26,12 +26,12 @@ class CartItemModel extends Equatable {
   factory CartItemModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return CartItemModel(
-      name: data[kName],
-      price: data[kPrice],
-      imageUrl: data[kImageUrl],
-      quantity: data[kQuantity],
-      calories: data[kCalories],
-      weight: data[kWeight],
+      name: data[kName] ?? '',
+      price: data[kPrice] ?? 0,
+      imageUrl: data[kImageUrl] ?? '',
+      quantity: data[kQuantity] ?? 0,
+      calories: data[kCalories] ?? 0,
+      weight: data[kWeight] ?? '',
     );
   }
 
@@ -78,6 +78,7 @@ class CartItemModel extends Equatable {
       kImageUrl: imageUrl,
       kQuantity: quantity,
       kCalories: calories,
+      kWeight: weight,
     };
   }
 
