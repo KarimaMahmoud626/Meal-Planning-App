@@ -4,9 +4,9 @@ import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.
 import 'package:meal_planning_app/features/home/domain/repos/grocerry_items_repo.dart';
 
 class FetchGrocerryItemsRepoImpl extends GrocerryItemsRepo {
-  final FirebaseFirestore firestore;
+  final firestore = FirebaseFirestore.instance;
 
-  FetchGrocerryItemsRepoImpl(this.firestore);
+  FetchGrocerryItemsRepoImpl();
   @override
   Future<Either<Exception, List<GrocerryItemModel>>> getGrocerryData(
     String category,

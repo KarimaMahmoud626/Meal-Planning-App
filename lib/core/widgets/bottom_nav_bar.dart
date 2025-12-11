@@ -5,6 +5,7 @@ import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/features/Auth/data/repositories/auth_repo_impl.dart';
 import 'package:meal_planning_app/features/Auth/domain/usecases/get_user_data_use_case.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
+import 'package:meal_planning_app/features/home/data/repos/grocerry_items_repo_impl.dart';
 import 'package:meal_planning_app/features/home/domain/services/cart_services.dart';
 import 'package:meal_planning_app/features/home/domain/usecases/calculate_cart_calorie_and_price_use_case.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/cart_cubit/cubit/cart_cubit.dart';
@@ -78,7 +79,9 @@ class BottomNavContainer extends StatelessWidget {
       providers: [
         BlocProvider(
           create:
-              (context) => GrocerryItemsCubit()..getGrocerryItems('vegetables'),
+              (context) =>
+                  GrocerryItemsCubit(repo: FetchGrocerryItemsRepoImpl())
+                    ..getGrocerryItems('vegetables'),
         ),
         BlocProvider(
           create:
