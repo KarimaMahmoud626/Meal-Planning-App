@@ -28,14 +28,14 @@ class CartBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig.screenHeight! * 0.2,
+      height: SizeConfig.screenHeight! * 0.19,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child:
             isLoadded!
                 ? Column(
                   children: [
-                    VerticalSpace(2),
+                    VerticalSpace(1.5),
                     TextRow(
                       headText: 'Total Price:',
                       valueText: '\$$totalPrice',
@@ -44,7 +44,7 @@ class CartBottomSheet extends StatelessWidget {
                       headText: 'Total Calories:',
                       valueText: '$totalCalories cal',
                     ),
-                    VerticalSpace(1),
+                    VerticalSpace(0.5),
                     SizedBox(
                       height: 40,
                       width: SizeConfig.screenWidth! * 0.7,

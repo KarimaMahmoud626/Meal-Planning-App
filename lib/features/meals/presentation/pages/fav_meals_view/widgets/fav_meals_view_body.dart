@@ -28,13 +28,6 @@ class FavMealsViewBody extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = items[index];
               return GestureDetector(
-                // onTap: (){
-
-                //   Get.to(
-                //   () => MealDescriptionView(meal: items[index].),
-                //   duration: const Duration(milliseconds: 500),
-                //   transition: getx.Transition.rightToLeft,
-                // );},
                 child: FavMealsCard(
                   item: item,
                   onPressed: () async {
@@ -47,7 +40,7 @@ class FavMealsViewBody extends StatelessWidget {
         } else if (state is FavError) {
           return Center(child: Text(state.errorMessage));
         } else {
-          return const Center(child: Text('Your cart is empty'));
+          return const Center(child: Text('Your Fav list is empty'));
         }
       },
     );

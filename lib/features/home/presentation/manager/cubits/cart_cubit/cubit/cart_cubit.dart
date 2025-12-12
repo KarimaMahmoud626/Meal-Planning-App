@@ -16,7 +16,7 @@ class CartCubit extends Cubit<CartState> {
     : super(CartLoading());
 
   Future<void> getCartItems() async {
-    emit(CartLoading());
+    // emit(CartLoading());
     final result = await repo.getCartData();
 
     result.fold((error) => emit(CartError(errorMessage: error.toString())), (
@@ -82,9 +82,8 @@ class CartCubit extends Cubit<CartState> {
 
   Future<void> removeAll() async {
     try {
-      emit(CartLoading());
       await repo.removeAll();
-      await getCartItems();
+      emit(CartEmpty());
     } catch (e) {
       emit(CartError(errorMessage: e.toString()));
     }

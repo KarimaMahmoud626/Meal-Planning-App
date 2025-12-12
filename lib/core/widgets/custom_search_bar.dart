@@ -44,7 +44,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           builder: (BuildContext context, SearchController controller) {
             return SearchBar(
               controller: controller,
-              hintText: 'Serch for meals...',
+              hintText: 'Search for meals...',
               padding: const WidgetStatePropertyAll<EdgeInsets>(
                 EdgeInsets.symmetric(horizontal: 12),
               ),

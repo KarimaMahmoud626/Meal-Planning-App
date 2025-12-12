@@ -8,6 +8,7 @@ class PlanView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: SimpleAppBar(
         pageName: 'Plan Your Meals',
         withDefaultColor: false,
