@@ -157,9 +157,13 @@ Calorie limits are calculated automatically during profile setup using user data
 ## 🛍 **Cart Management**
 A dedicated Firestore collection for each user:
 
-- Add/remove grocery items  
-- Real-time UI updates via Cubit  
-- Auto-sync across devices  
+- Add/Remove Items - Manage grocery items with quantity control
+- Real-time Calculations - Instant updates for:
+   - Total Price - Sum of all items based on quantity
+   - Total Calories - Aggregate calorie count for cart items
+
+- Smart Calorie Tracking - Visual progress indicator showing percentage of daily calorie needs
+- Order Confirmation - Validates that cart meets minimum nutritional requirements (70% of daily calories) before allowing checkout
 
 ---
 
@@ -169,6 +173,20 @@ Users can:
 - Mark grocery items as favorites  
 - Store them in `users/{uid}/favorites`  
 - Access them instantly in a separate Favorites screen  
+
+---
+
+## ✅ Testing Coverage
+
+This project includes unit tests to ensure code quality and reliability:
+- ✅ Unit Tests for Services (Cart calculations, BMR calculation)
+- ✅ Unit Tests for Cubits (State management testing)
+- 📦 More test coverage will be added progressively
+
+Run tests using:
+```bash
+flutter test
+```
 
 ---
 
@@ -272,12 +290,9 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 ## 🚀 Upcoming Features
 
 Here are some of the planned enhancements that will be added soon:
-
-- 🗓️ **Meal Planner Calendar** — plan your weekly meals easily  
 - 📦 **Offline Mode** — browse saved data using local caching  
 - 🔔 **Push Notifications** — get daily meal suggestions and reminders  
 - 🌙 **Dark Mode Support** — enjoy a better experience at night  
-- 🧪 **Unit Tests** — ensure stability and reliability for Cubits and repositories  
 
 ---
 
