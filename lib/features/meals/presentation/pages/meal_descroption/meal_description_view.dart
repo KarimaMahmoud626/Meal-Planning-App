@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/repos/fav_meal_repo_impl.dart';
+import 'package:meal_planning_app/features/meals/data/repos/suggested_meal_repo_impl.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/fav_meals_cubit/cubit/fav_meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/utils/open_video.dart';
@@ -16,8 +18,15 @@ class MealDescriptionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => MealsCubit()..getMealsById(meal.mealId)),
-        BlocProvider(create: (_) => FavMealsCubit()..getFavMeals()),
+        BlocProvider(
+          create:
+              (_) =>
+                  MealsCubit(repo: SuggestedMealRepoImpl())
+                    ..getMealsById(meal.mealId),
+        ),
+        BlocProvider(
+          create: (_) => FavMealsCubit(FavMealRepoImpl())..getFavMeals(),
+        ),
       ],
       child: Scaffold(
         backgroundColor: Colors.white,

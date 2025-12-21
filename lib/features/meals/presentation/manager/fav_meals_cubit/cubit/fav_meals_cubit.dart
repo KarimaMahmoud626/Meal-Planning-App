@@ -1,15 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meal_planning_app/features/meals/data/repos/fav_meal_repo_impl.dart';
 import 'package:meal_planning_app/features/meals/data/models/fav_meal_model.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/domain/repos/fav_meal_repo.dart';
 
 part 'fav_meals_state.dart';
 
 class FavMealsCubit extends Cubit<FavMealsState> {
-  final repo = FavMealRepoImpl();
+  final FavMealRepo repo;
 
-  FavMealsCubit() : super(FavMealsLoading());
+  FavMealsCubit(this.repo) : super(FavMealsLoading());
 
   Future<void> getFavMeals() async {
     final result = await repo.getFavMealData();

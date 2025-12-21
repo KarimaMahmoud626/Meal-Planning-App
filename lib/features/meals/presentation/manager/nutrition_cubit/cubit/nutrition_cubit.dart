@@ -1,17 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meal_planning_app/core/constants.dart';
-import 'package:meal_planning_app/features/meals/data/repos/meal_nutrition_repo_impl.dart';
 
 import 'package:meal_planning_app/features/meals/data/models/nutrition_request_model.dart';
 import 'package:meal_planning_app/features/meals/data/models/nutrition_response_model.dart';
+import 'package:meal_planning_app/features/meals/domain/repos/meal_nutrition_repo.dart';
 
 part 'nutrition_state.dart';
 
 class NutritionCubit extends Cubit<NutritionState> {
-  final repo = MealNutritionRepoImpl();
+  final MealNutritionRepo repo;
 
-  NutritionCubit() : super(NutritionLoading());
+  NutritionCubit({required this.repo}) : super(NutritionLoading());
 
   getNutritionSummary(NutritionRequestModel model) async {
     print('entering nutrition summary');

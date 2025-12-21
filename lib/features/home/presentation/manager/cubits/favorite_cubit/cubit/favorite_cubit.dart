@@ -1,15 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meal_planning_app/features/home/data/repos/fav_repo_impl.dart';
 import 'package:meal_planning_app/features/home/data/models/fav_item_model.dart';
 import 'package:meal_planning_app/features/home/data/models/grocerry_item_model.dart';
+import 'package:meal_planning_app/features/home/domain/repos/fav_repo.dart';
 
 part 'favorite_state.dart';
 
 class FavouriteCubit extends Cubit<FavouriteState> {
-  FavouriteCubit() : super(FavLoading());
-  final repo = FavRepoImpl(FirebaseFirestore.instance);
+  FavouriteCubit({required this.repo}) : super(FavLoading());
+  final FavRepo repo;
 
   Future<void> getFavItems() async {
     final result = await repo.getFavtData();

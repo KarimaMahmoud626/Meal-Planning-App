@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/core/constants.dart';
@@ -6,6 +7,7 @@ import 'package:meal_planning_app/features/Auth/data/repositories/auth_repo_impl
 import 'package:meal_planning_app/features/Auth/domain/usecases/get_user_data_use_case.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/home/data/repos/cart_repo_impl.dart';
+import 'package:meal_planning_app/features/home/data/repos/fav_repo_impl.dart';
 import 'package:meal_planning_app/features/home/data/repos/grocerry_items_repo_impl.dart';
 import 'package:meal_planning_app/features/home/domain/services/cart_services.dart';
 import 'package:meal_planning_app/features/home/domain/usecases/calculate_cart_calorie_and_price_use_case.dart';
@@ -15,6 +17,8 @@ import 'package:meal_planning_app/features/home/presentation/manager/cubits/groc
 import 'package:meal_planning_app/features/meal_planner/data/repos/meal_planner_repo_impl.dart';
 import 'package:meal_planning_app/features/meal_planner/domain/usecases/get_week_plan_usecase.dart';
 import 'package:meal_planning_app/features/meal_planner/presentation/manager/planner_cubit/planner_cubit.dart';
+import 'package:meal_planning_app/features/meals/data/repos/fav_meal_repo_impl.dart';
+import 'package:meal_planning_app/features/meals/data/repos/suggested_meal_repo_impl.dart';
 import 'package:meal_planning_app/features/meals/domain/usecases/search_meal_use_case.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/fav_meals_cubit/cubit/fav_meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
@@ -94,19 +98,27 @@ class BottomNavContainer extends StatelessWidget {
                 repo: CartRepoImpl(),
               )..getCartItems(),
         ),
-        BlocProvider(create: (context) => FavouriteCubit()..getFavItems()),
+        BlocProvider(
+          create:
+              (context) =>
+                  FavouriteCubit(repo: FavRepoImpl(FirebaseFirestore.instance))
+                    ..getFavItems(),
+        ),
         BlocProvider(
           create:
               (context) =>
                   AuthCubit(getUserDataUseCase: GetUserDataUseCase(repo))
                     ..getUserData(),
         ),
-        BlocProvider(create: (context) => FavMealsCubit()..getFavMeals()),
+        BlocProvider(
+          create: (context) => FavMealsCubit(FavMealRepoImpl())..getFavMeals(),
+        ),
         BlocProvider(
           create:
-              (context) =>
-                  MealsCubit(searchMealUseCase: SearchMealUseCase())
-                    ..getSuggestedMeals(4),
+              (context) => MealsCubit(
+                searchMealUseCase: SearchMealUseCase(),
+                repo: SuggestedMealRepoImpl(),
+              )..getSuggestedMeals(4),
         ),
         BlocProvider(
           create:

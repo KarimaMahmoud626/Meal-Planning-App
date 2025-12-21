@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/data/repos/meal_nutrition_repo_impl.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/nutrition_cubit/cubit/nutrition_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/widgets/nutrition_summary_body.dart';
 
@@ -13,7 +14,8 @@ class NutritionSumary extends StatelessWidget {
     return BlocProvider(
       create:
           ((context) =>
-              NutritionCubit()..getNutritionSummary(meal.toNutritionModel())),
+              NutritionCubit(repo: MealNutritionRepoImpl())
+                ..getNutritionSummary(meal.toNutritionModel())),
       child: BlocBuilder<NutritionCubit, NutritionState>(
         builder: (BuildContext context, state) {
           if (state is NutritionLoading) {
