@@ -1,5 +1,9 @@
-# 🍽️ Meal Planning App
-
+# 🍽️ Meal Planning App 
+![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?logo=dart)
+![Firebase](https://img.shields.io/badge/Firebase-Enabled-FFCA28?logo=firebase)
+![License](https://img.shields.io/badge/License-MIT-green)
+  
 A comprehensive cross-platform meal planning application built with Flutter, featuring personalized nutrition tracking, smart shopping cart validation, and a 7-day meal planner. This app helps users maintain healthy eating habits by providing calorie-based meal recommendations and ensuring nutritional requirements are met.
 
 ---
