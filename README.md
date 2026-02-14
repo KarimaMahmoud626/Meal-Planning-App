@@ -1,261 +1,34 @@
-# 🛒 **PlaniShop – Meal Planning & Grocery Management App**
-PlaniShop is a **Flutter** application built using **Clean Architecture**, designed to help users plan their meals, manage grocery lists, track daily calories, and explore suggested recipes.  
-It integrates:
-
-- **Firebase Authentication**  
-- **Firebase Firestore**  
-- **TheMealDB API** for meal suggestions  
-- **Spoonacular API** for advanced nutritional analysis  
-
----
-
-# 🚀 **Features**
-
-## 🏁 **Splash Screen**
-A clean, animated splash experience that introduces the app on startup.
-
-- Smooth fade-in animation  
-- Automatic navigation to the Onboarding flow or Home (depending on auth state)
-
----
-
-## 🧭 **Onboarding**
-A multi-screen onboarding flow introducing the main capabilities of PlaniShop:
-
-- How to browse groceries  
-- How to explore meals  
-- Nutrition tracking  
-- Favorites  
-- Personalized meal planning  
-
-Created to help new users understand the app quickly and clearly.
-
----
-
-## 🔐 **Authentication (Google / Facebook / Email)**
-The app uses **Firebase Authentication** with:
-
-- Login with Google  
-- Login with Facebook  
-- Email + Password login  
-
-### Authentication Flow:
-1. App checks the Firebase login response.  
-2. If `isNewUser = false` → navigate directly to **Home**.  
-3. If `isNewUser = true` → navigate to **Complete User Information Screen** to gather essential health data.
-
-This ensures personalized meal planning from day one.
-
----
-
-## 👤 **Complete User Information Screen**
-This screen is displayed only for new users.
-
-### Users must provide:
-- **Gender** (Male / Female) — via a dropdown  
-- **Height** in cm  
-- **Weight** in kg  
-- **Age** in years  
-
-### What happens next:
-1. The app calculates the user’s **daily calorie requirement (BMR)**.  
-2. All values are saved in Firestore under `users/{uid}`.  
-3. The calculated calories are used in all future **meal planning features**.
-
----
-
-## 🔢 **Calorie Calculation (BMR)**
-PlaniShop uses standard BMR equations.
-
-### For Males:
-- BMR = 10 * weight + 6.25 * height - 5 * age + 5
-### For Females:
-- BMR = 10 * weight + 6.25 * height - 5 * age - 161
+# 🍽️ Meal Planning App 
+![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?logo=dart)
+![Firebase](https://img.shields.io/badge/Firebase-Enabled-FFCA28?logo=firebase)
+![License](https://img.shields.io/badge/License-MIT-green)
   
-The resulting calorie value is stored in Firestore and becomes the limit for generating daily meal plans.
-
-## 🧾 **Grocery Module**
-Fetches grocery items categorized by type from Firestore.
-
-### Each item supports:
-- **Add to Cart**
-- **Mark as Favorite**
-
-### Technical Behavior:
-- Every action updates Firestore in real-time  
-- All data is isolated to the authenticated user using their Firebase `uid`  
-- Cubit manages the entire state (loading → success → error)
+A comprehensive cross-platform meal planning application built with Flutter, featuring personalized nutrition tracking, smart shopping cart validation, and a 7-day meal planner. This app helps users maintain healthy eating habits by providing calorie-based meal recommendations and ensuring nutritional requirements are met.
 
 ---
 
-## 🍽 **Suggested Meals (TheMealDB)**
-Displays a list of recommended meals retrieved from **TheMealDB API**:
+## ✨ Features
 
-- Daily recommended meals  
-- Category-based browsing (Beef, Poultry, Breakfast, etc.)  
-- Eye-catching cards with images + meal names  
+### Core Features
+- **Dual API Integration**: Combines TheMealDB and Spoonacular APIs for extensive meal database and detailed nutrition information
+- **7-Day Meal Planner**: Plan your meals for the entire week with dynamic calorie calculations
+- **Smart Shopping Cart**: BMR-based validation requiring 70% daily calorie minimum before checkout
+- **Real-time Sync**: Firebase Firestore integration for seamless data synchronization across devices
+- **Personalized Nutrition**: Custom calorie recommendations based on user health metrics (weight, height, age, activity level)
+- **Social Authentication**: Google and Facebook login via Firebase Authentication
 
----
-
-## 🍴 **Meals List & Categories**
-Selecting a category loads all meals belonging to that category.
-
-Each meal card contains:
-- Meal image  
-- Meal name  
-- Tap → Meal Description View  
-
----
-
-## 📖 **Meal Description View**
-A detailed screen that shows everything about the selected meal.
-
-### Includes:
-- 🖼 High-quality meal image  
-- 🧂 List of ingredients  
-- 📜 Cooking instructions  
-- 🧮 Nutrition Summary  
-- 🎥 Button: **“Watch Recipe Video”** (opens YouTube link)
-
-### Additional UX Features:
-- Floating button for recipe video  
-- Smooth scrolling  
-- Built with Clean Architecture + Cubit  
+### User Experience
+- Browse meals by categories
+- Search functionality for quick meal discovery
+- Detailed nutritional information for each meal
+- Add meals to favorites for quick access
+- Track daily calorie intake
+- Receive health-based meal recommendations
 
 ---
 
-## 🧠 **Nutrition Summary (Spoonacular API)**
-Uses the **Recipe Analyze Endpoint** to calculate food nutrients with high accuracy.
-
-Returns:
-- **Calories**
-- **Protein**
-- **Fat**
-- **Carbohydrates**
-- **Sugar**
-
-These values are displayed inside a custom widget for easy interpretation.
-
----
-
-## 🍱 Weekly Meal Planner (Under Development)
-
-The Meal Planner module generates a fully personalized **7-day meal plan** based on the user’s daily calorie requirement.  
-Calorie limits are calculated automatically during profile setup using user data (gender, age, height, weight), then used to generate meals through the **Spoonacular API**.
-
-### 🔧 How It Works
-- A complete weekly plan is created, with a dedicated **Breakfast**, **Lunch**, and **Dinner** for every day.
-- Users can easily navigate between days using the top horizontal day selector.
-- Each meal card shows:
-  - Meal image  
-  - Meal name  
-  - Duration  
-  - “Show Recipe” button 
-
----
-
-## 🛍 **Cart Management**
-A dedicated Firestore collection for each user:
-
-- Add/Remove Items - Manage grocery items with quantity control
-- Real-time Calculations - Instant updates for:
-   - Total Price - Sum of all items based on quantity
-   - Total Calories - Aggregate calorie count for cart items
-
-- Smart Calorie Tracking - Visual progress indicator showing percentage of daily calorie needs
-- Order Confirmation - Validates that cart meets minimum nutritional requirements (70% of daily calories) before allowing checkout
-
----
-
-## ❤️ **Favorites**
-Users can:
-
-- Mark grocery items as favorites  
-- Store them in `users/{uid}/favorites`  
-- Access them instantly in a separate Favorites screen  
-
----
-
-## ✅ Testing Coverage
-
-This project includes unit tests to ensure code quality and reliability:
-- ✅ Unit Tests for Services (Cart calculations, BMR calculation)
-- ✅ Unit Tests for Cubits (State management testing)
-- 📦 More test coverage will be added progressively
-
-Run tests using:
-```bash
-flutter test
-```
-
----
-
-## 🧩 Architecture
-
-This app follows the **Clean Architecture pattern**, ensuring maintainability, scalability, and separation of concerns.
-
-📦 **lib/**  
- ┣ 📂 **core/**  
- ┃ ┣ 📂 constants/  
- ┃ ┣ 📂 utils/  
- ┃ ┣ 📂 widgets/  
- ┃ ┗ 📂 manager/  
- ┃  
- ┣ 📂 **features/**  
- ┃ ┣ 📂 auth/  
- ┃ ┃ ┣ 📂 domain/  
- ┃ ┃ ┣ 📂 data/  
- ┃ ┃ ┗ 📂 presentation/  
- ┃ ┃  
- ┃ ┣ 📂 home/  
- ┃ ┃ ┣ 📂 domain/  
- ┃ ┃ ┣ 📂 data/  
- ┃ ┃ ┗ 📂 presentation/  
- ┃ ┃  
- ┃ ┣ 📂 meals/  
- ┃ ┃ ┣ 📂 domain/  
- ┃ ┃ ┣ 📂 data/  
- ┃ ┃ ┗ 📂 presentation/  
- ┃ ┃  
- ┃ ┣ 📂 onboarding/  
- ┃ ┃ ┗ 📂 presentation/  
- ┃ ┃  
- ┃ ┗ 📂 splash/  
- ┃ ┃ ┗ 📂 presentation/  
- ┃  
- ┗ 📄 main.dart  
-
-Each feature includes:
-- `data/` → repositories, Firebase/HTTP logic  
-- `domain/` → models and business logic  
-- `presentation/` → UI and Cubits for state management
----
-
-## 🧠 State Management
-The project uses **Bloc/Cubit** from `flutter_bloc` for:
-- Authentication flow
-- Data fetching (Firestore / APIs)
-- Cart and favorites updates
-- UI states (loading, success, error)
-- Splash navigation and initial route handling
-
----
-
-## 🗄 Tech Stack
-
-| Category | Technology |
-|-----------|-------------|
-| **Frontend** | Flutter (Dart) |
-| **State Management** | Bloc / Cubit |
-| **Backend** | Firebase Firestore |
-| **Authentication** | Firebase Auth (Google, Facebook) |  
-| **API** | TheMealDB API, SpoonAcular API |  
-| **Architecture** | Clean Architecture |
-| **Design Pattern** | Repository Pattern |
-
----
-
-## 🖼 App Preview
+## 📱 Screenshots
 
 | Splash_View | Onboarding 1 | Onboarding 2 | Onboarding 3 | Onboarding 4 |  
 |:------------:|:------------:|:------------:|:------------:|:------------:|
@@ -287,15 +60,274 @@ The project uses **Bloc/Cubit** from `flutter_bloc` for:
 
 ---
 
-## 🚀 Upcoming Features
+---
 
-Here are some of the planned enhancements that will be added soon:
-- 📦 **Offline Mode** — browse saved data using local caching  
-- 🔔 **Push Notifications** — get daily meal suggestions and reminders  
-- 🌙 **Dark Mode Support** — enjoy a better experience at night  
+## 🏗️ Architecture & Design Patterns
+
+This project follows **Clean Architecture** principles with clear separation of concerns:
+
+```
+lib/
+├── core/                    # Shared utilities and resources
+│   ├── constants/          # App-wide constants (colors, strings, etc)
+│   ├── utils/              # Helper functions and utilities
+│   ├── widgets/            # Reusable widgets
+│   └── manager/            # Global state/resource management
+│
+├── features/               # Feature modules
+│   ├── auth/
+│   │   ├── domain/        # Business logic (entities, use cases)
+│   │   ├── data/          # Data layer (models, repositories, data sources)
+│   │   └── presentation/  # UI layer (pages, widgets, BLoC/Cubit)
+│   │
+│   ├── home/
+│   │   ├── domain/
+│   │   ├── data/
+│   │   └── presentation/
+│   │
+│   ├── meals/
+│   │   ├── domain/
+│   │   ├── data/
+│   │   └── presentation/
+│   │
+│   ├── onboarding/
+│   │   └── presentation/
+│   │
+│   └── splash/
+│       └── presentation/
+│
+└── main.dart               # App entry point
+```
+
+### Key Design Patterns
+- **Clean Architecture**: Separation into Data, Domain, and Presentation layers
+- **Repository Pattern**: Abstract data sources behind repository interfaces
+- **BLoC Pattern**: State management using Cubit and BLoC
+- **Dependency Injection**: Decoupled components for testability
 
 ---
 
-## 🚧 Project Status
-This app is still under active development.  
-More features, improvements, and UI updates will be added soon — stay tuned! 🌱
+## 🛠️ Tech Stack
+
+### Framework & Language
+- **Flutter** (Dart)
+- **Target Platform**: Android (iOS-ready architecture)
+
+### State Management
+- **flutter_bloc** (9.1.1) - Primary state management
+- **Cubit** - For simpler state scenarios
+- **setState** - For local widget state
+
+### Backend & Cloud Services
+- **Firebase Authentication** - Social login (Google, Facebook)
+- **Cloud Firestore** - Real-time database and synchronization
+- **Firebase Core** - Firebase initialization
+
+### APIs
+- **TheMealDB API** - Meal database and recipes
+- **Spoonacular API** - Detailed nutrition information and analysis
+
+### Testing
+- **bloc_test** (10.0.0) - BLoC/Cubit testing
+- **mocktail** (1.0.4) - Mocking dependencies
+- **Unit Tests** - Services and state management logic
+
+### Key Dependencies
+```yaml
+# State Management
+flutter_bloc: ^9.1.1
+bloc: ^9.0.1
+equatable: ^2.0.7
+
+# Firebase
+firebase_auth: ^6.0.2
+firebase_core: ^4.1.0
+cloud_firestore: ^6.0.1
+
+# Authentication
+google_sign_in: ^6.2.1
+flutter_facebook_auth: ^7.1.2
+
+# Networking
+http: ^1.6.0
+
+# Functional Programming
+dartz: ^0.10.1
+
+# UI/UX
+lottie: ^3.3.1
+awesome_dialog: ^3.3.0
+dots_indicator: ^4.0.1
+persistent_bottom_nav_bar: ^6.2.1
+flutter_floating_bottom_bar: ^1.3.0
+
+# Testing
+bloc_test: ^10.0.0
+mocktail: ^1.0.4
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK (3.0+)
+- Dart SDK (3.0+)
+- Android Studio / VS Code
+- Firebase account
+- API Keys (TheMealDB, Spoonacular)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/KarimaMahmoud626/Meal-Planning-App.git
+cd Meal-Planning-App
+```
+
+2. **Install dependencies**
+```bash
+flutter pub get
+```
+
+3. **Firebase Setup**
+   - Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
+   - Enable Authentication (Google & Facebook providers)
+   - Enable Cloud Firestore
+   - Download `google-services.json` (Android)
+   - Place it in `android/app/`
+
+4. **API Configuration**
+   - Get API keys from:
+     - [TheMealDB](https://www.themealdb.com/api.php)
+     - [Spoonacular](https://spoonacular.com/food-api)
+   - Create `lib/core/utils/api_constants.dart`:
+   ```dart
+   class ApiConstants {
+     static const String mealDbApiKey = 'YOUR_MEALDB_KEY';
+     static const String spoonacularApiKey = 'YOUR_SPOONACULAR_KEY';
+   }
+   ```
+
+5. **Run the app**
+```bash
+flutter run
+```
+
+---
+
+## 🧪 Testing
+
+Run unit tests:
+```bash
+flutter test
+```
+
+Tests cover:
+- ✅ API service layer
+- ✅ Repository implementations
+- ✅ BLoC/Cubit state management
+- ✅ Use case business logic
+
+---
+
+## 🎯 Key Technical Highlights
+
+### Smart Cart Validation
+The shopping cart implements BMR (Basal Metabolic Rate) calculation to ensure users meet at least 70% of their daily caloric needs before checkout, promoting healthy eating habits.
+
+### Custom API Mapping
+Built custom mapping layer to combine data from TheMealDB and Spoonacular, normalizing different API response structures into unified domain models.
+
+### Real-time Synchronization
+Leverages Firestore real-time listeners to keep meal plans and cart items synchronized across user sessions and devices.
+
+### Clean Error Handling
+Implements Either type (via dartz) for elegant error handling without exceptions, making the codebase more predictable and maintainable.
+
+---
+
+## 📂 Project Structure
+
+```
+lib/
+├── main.dart
+│
+├── core/
+│   ├── constants/          # App constants, colors, text styles
+│   ├── utils/              # Helper functions, validators, formatters
+│   ├── widgets/            # Shared UI components
+│   └── manager/            # Global managers (theme, navigation, etc)
+│
+└── features/
+    ├── splash/
+    │   └── presentation/   # Splash screen UI
+    │
+    ├── onboarding/
+    │   └── presentation/   # Onboarding screens
+    │
+    ├── auth/
+    │   ├── domain/
+    │   │   ├── entities/
+    │   │   ├── repositories/
+    │   │   └── usecases/
+    │   ├── data/
+    │   │   ├── models/
+    │   │   ├── datasources/
+    │   │   └── repositories/
+    │   └── presentation/
+    │       ├── cubit/ or bloc/
+    │       ├── pages/
+    │       └── widgets/
+    │
+    ├── home/
+    │   ├── domain/
+    │   ├── data/
+    │   └── presentation/
+    │
+    └── meals/
+        ├── domain/
+        ├── data/
+        └── presentation/
+```
+
+---
+
+## 🔮 Future Enhancements
+
+- [ ] iOS build and testing
+- [ ] Widget and integration tests
+- [ ] Offline mode with local caching
+- [ ] Recipe video integration
+- [ ] Grocery list export functionality
+- [ ] Meal sharing with friends
+- [ ] Dietary restrictions filters (vegan, gluten-free, etc.)
+- [ ] Barcode scanning for nutrition tracking
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 👤 Author
+
+**Karima Mahmoud Mohammed**
+- GitHub: [@KarimaMahmoud626](https://github.com/KarimaMahmoud626)
+- LinkedIn: [Karima Mahmoud](https://linkedin.com/in/KarimaMahmoud626)
+- Email: karimamahmoud382@gmail.com
+
+---
+
+## 🙏 Acknowledgments
+
+- [TheMealDB](https://www.themealdb.com/) - Free meal database API
+- [Spoonacular](https://spoonacular.com/) - Nutrition API
+- [Flutter](https://flutter.dev/) - UI framework
+- [Firebase](https://firebase.google.com/) - Backend services
+
+---
+
+**⭐ If you found this project helpful, please consider giving it a star!**
