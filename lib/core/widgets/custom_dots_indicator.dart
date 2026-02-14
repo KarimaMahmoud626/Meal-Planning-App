@@ -1,6 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
 
 class CustomDotsIndicator extends StatelessWidget {
   const CustomDotsIndicator({super.key, @required this.position});

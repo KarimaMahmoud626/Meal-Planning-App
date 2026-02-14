@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 

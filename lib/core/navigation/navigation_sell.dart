@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
+import 'package:meal_planning_app/core/utils/size_config.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/suggested_meals/suggested_meals_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/grocerry/home_view.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/cart/cart_view.dart';
+
+class NavigationSell extends StatelessWidget {
+  NavigationSell({super.key});
+
+  final PersistentTabController _controller = PersistentTabController(
+    initialIndex: 1,
+  );
+
+  List<Widget> _buildScreens() {
+    return [
+      const CartView(key: ValueKey('cart_view')),
+      const HomeView(key: ValueKey('home_view')),
+      const SuggestedMealsView(key: ValueKey('suggested_meals_view')),
+      const FavMealsView(key: ValueKey('fav_meals_view')),
+    ];
+  }
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.shopping_cart_outlined),
+        title: ("Cart"),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        activeColorPrimary: kMainColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.category_outlined),
+        title: ("Grocery"),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        activeColorPrimary: kMainColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.fastfood_outlined),
+        title: ("Meals"),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        activeColorPrimary: kMainColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.favorite_outlined),
+        title: ("Favorites"),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        activeColorPrimary: kMainColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PersistentTabView(
+      context,
+      controller: _controller,
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      navBarHeight: SizeConfig.defaultSize! * 7,
+      confineToSafeArea: true,
+      backgroundColor: Colors.white,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
+      hideNavigationBarWhenKeyboardAppears: true,
+      decoration: NavBarDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        colorBehindNavBar: Colors.white,
+      ),
+      //popAllScreensOnTapOfSelectedTab: true,
+      popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
+      navBarStyle: NavBarStyle.style14,
+    );
+  }
+}

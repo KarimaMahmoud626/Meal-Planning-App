@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
-import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_title_subtitle.dart';
 import 'package:meal_planning_app/core/widgets/rounded_rectangle_image_container.dart';

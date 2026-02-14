@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 
 class NutritionRequestModel extends Equatable {

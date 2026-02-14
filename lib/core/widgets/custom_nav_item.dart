@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
 
 class CustomNavItem extends StatelessWidget {
   final IconData icon;

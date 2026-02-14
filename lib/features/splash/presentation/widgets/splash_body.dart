@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/features/onBoarding/presentation/on_boarding_view.dart';
-import 'package:get/get.dart';
 
 class SplashBody extends StatefulWidget {
   const SplashBody({super.key});
@@ -27,7 +26,7 @@ class _SplashBodyState extends State<SplashBody>
       end: 1,
     ).animate(animationController!);
     animationController?.repeat(reverse: true);
-    goToNextView();
+    goToNextView(context);
   }
 
   @override
@@ -51,9 +50,9 @@ class _SplashBodyState extends State<SplashBody>
     );
   }
 
-  void goToNextView() {
+  void goToNextView(BuildContext context) {
     Future.delayed(Duration(seconds: 5), () {
-      Get.to(() => OnBoardingView(), transition: Transition.fade);
+      NavigationHelper.toOnboarding(context);
     });
   }
 }

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meal_planning_app/core/constants.dart';
+import 'package:meal_planning_app/core/constants/constants.dart';
 
 import 'package:meal_planning_app/features/meals/data/models/nutrition_request_model.dart';
 import 'package:meal_planning_app/features/meals/data/models/nutrition_response_model.dart';
