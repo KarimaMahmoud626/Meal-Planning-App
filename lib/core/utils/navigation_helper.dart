@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/routes/app_routes.dart';
+import 'package:meal_planning_app/features/Auth/data/models/user_model.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 
+/// Helper class for type-safe navigation throughout the app.
+/// Provides methods for navigating to all app routes with optional replace parameter.
 class NavigationHelper {
-  NavigationHelper._();
+  const NavigationHelper._();
 
   static Future<void> toOnboarding(
     BuildContext context, {
@@ -32,11 +35,37 @@ class NavigationHelper {
     return Navigator.pushNamed(context, AppRoutes.completeInfo);
   }
 
-  static Future<void> toMain(BuildContext context, {bool replace = false}) {
+  static Future<void> toMain(
+    BuildContext context, {
+    bool replace = false,
+    required UserModel user,
+  }) {
     if (replace) {
-      return Navigator.pushReplacementNamed(context, AppRoutes.main);
+      return Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.main,
+        arguments: user,
+      );
     }
-    return Navigator.pushNamed(context, AppRoutes.main);
+    return Navigator.pushNamed(context, AppRoutes.main, arguments: user);
+  }
+
+  /// Navigate to favorites (grocery items)
+  static Future<void> toFavorites(
+    BuildContext context, {
+    bool replace = false,
+  }) {
+    if (replace) {
+      return Navigator.pushReplacementNamed(context, AppRoutes.favorites);
+    }
+    return Navigator.pushNamed(context, AppRoutes.favorites);
+  }
+
+  static Future<void> toFavMeals(BuildContext context, {bool replace = false}) {
+    if (replace) {
+      return Navigator.pushReplacementNamed(context, AppRoutes.favMeals);
+    }
+    return Navigator.pushNamed(context, AppRoutes.favMeals);
   }
 
   static Future<void> toMealDescription(
@@ -55,6 +84,25 @@ class NavigationHelper {
       context,
       AppRoutes.mealDescription,
       arguments: meal,
+    );
+  }
+
+  static Future<void> toMealsView(
+    BuildContext context, {
+    required String mealCategory,
+    bool replace = false,
+  }) {
+    if (replace) {
+      return Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.mealsView,
+        arguments: mealCategory,
+      );
+    }
+    return Navigator.pushNamed(
+      context,
+      AppRoutes.mealsView,
+      arguments: mealCategory,
     );
   }
 

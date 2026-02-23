@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:meal_planning_app/core/constants/constants.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/core/widgets/bottom_nav_bar.dart';
 import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_state.dart';
-import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/compelete_information_view.dart';
-import 'package:get/get.dart' as getx;
-import 'package:get/get_core/src/get_main.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -22,20 +19,9 @@ class LoginViewBody extends StatelessWidget {
         if (state is LoginWithGoogleSuccess) {
           print(state);
           if (state.isNew!) {
-            Get.to(
-              () => BlocProvider.value(
-                value: context.read<AuthCubit>(),
-                child: CompeleteInformationView(),
-              ),
-              duration: const Duration(milliseconds: 500),
-              transition: getx.Transition.rightToLeft,
-            );
+            NavigationHelper.toCompleteInfo(context, replace: true);
           } else {
-            Get.to(
-              () => BottomNavContainer(),
-              duration: const Duration(milliseconds: 500),
-              transition: getx.Transition.rightToLeft,
-            );
+            NavigationHelper.toMain(context, replace: true, user: state.user!);
           }
         } else if (state is AuthFailure) {
           print(state.message);

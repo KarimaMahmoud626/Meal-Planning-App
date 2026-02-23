@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/constants/constants.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
+import 'package:meal_planning_app/features/Auth/data/models/user_model.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/suggested_meals/suggested_meals_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -8,7 +9,9 @@ import 'package:meal_planning_app/features/home/presentation/pages/grocerry/home
 import 'package:meal_planning_app/features/home/presentation/pages/cart/cart_view.dart';
 
 class NavigationSell extends StatelessWidget {
-  NavigationSell({super.key});
+  NavigationSell({super.key, required this.user});
+
+  final UserModel user;
 
   final PersistentTabController _controller = PersistentTabController(
     initialIndex: 1,
@@ -16,10 +19,10 @@ class NavigationSell extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      const CartView(key: ValueKey('cart_view')),
-      const HomeView(key: ValueKey('home_view')),
-      const SuggestedMealsView(key: ValueKey('suggested_meals_view')),
-      const FavMealsView(key: ValueKey('fav_meals_view')),
+      CartView(key: ValueKey('cart_view'), user: user),
+      HomeView(key: ValueKey('home_view'), user: user),
+      SuggestedMealsView(key: ValueKey('suggested_meals_view'), user: user),
+      FavMealsView(key: ValueKey('fav_meals_view'), user: user),
     ];
   }
 

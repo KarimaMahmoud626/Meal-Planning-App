@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meal_planning_app/core/routes/app_routes.dart';
 import 'package:meal_planning_app/core/routes/route_generator.dart';
 import 'package:meal_planning_app/features/Auth/data/repositories/auth_repo_impl.dart';
+import 'package:meal_planning_app/features/Auth/domain/usecases/add_new_user_usecase.dart';
 import 'package:meal_planning_app/features/Auth/domain/usecases/get_user_data_use_case.dart';
+import 'package:meal_planning_app/features/Auth/domain/usecases/login_with_facebook_use_case.dart';
+import 'package:meal_planning_app/features/Auth/domain/usecases/login_with_google_use_case.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/home/data/repos/cart_repo_impl.dart';
 import 'package:meal_planning_app/features/home/data/repos/fav_repo_impl.dart';
@@ -24,7 +26,6 @@ import 'package:meal_planning_app/features/meals/data/repos/suggested_meal_repo_
 import 'package:meal_planning_app/features/meals/domain/usecases/search_meal_use_case.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/fav_meals_cubit/cubit/fav_meals_cubit.dart';
 import 'package:meal_planning_app/features/meals/presentation/manager/meals_cubit/cubit/meals_cubit.dart';
-import 'package:meal_planning_app/features/splash/presentation/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,6 +66,11 @@ class MealPlanningApp extends StatelessWidget {
         BlocProvider(
           create:
               (context) => AuthCubit(
+                loginWithGoogleUseCase: LoginWithGoogleUseCase(AuthRepoImpl()),
+                loginWithFacebookUseCase: LoginWithFacebookUseCase(
+                  AuthRepoImpl(),
+                ),
+                addNewUserUsecase: AddNewUserUsecase(repo: AuthRepoImpl()),
                 getUserDataUseCase: GetUserDataUseCase(AuthRepoImpl()),
               )..getUserData(),
         ),
@@ -87,7 +93,7 @@ class MealPlanningApp extends StatelessWidget {
               )..getWeekPlan(),
         ),
       ],
-      child: GetMaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.initialRoute,
         onGenerateRoute: RouteGenerator.generateRoute,

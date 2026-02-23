@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:get/get.dart' as getx;
-import 'package:get/get_core/src/get_main.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_state.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/widgets/compelete_info_item.dart';
-import 'package:meal_planning_app/core/widgets/bottom_nav_bar.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/widgets/custom_drop_down_list.dart';
 
 class CompeleteInformationViewBody extends StatefulWidget {
@@ -30,11 +28,7 @@ class _CompeleteInformationViewBodyState
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is CompeleteInfoSuccess) {
-          Get.to(
-            () => BottomNavContainer(),
-            duration: Duration(milliseconds: 500),
-            transition: getx.Transition.rightToLeft,
-          );
+          NavigationHelper.toMain(context, user: state.user);
         }
       },
       builder: (context, state) {

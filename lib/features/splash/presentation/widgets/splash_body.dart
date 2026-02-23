@@ -51,8 +51,10 @@ class _SplashBodyState extends State<SplashBody>
   }
 
   void goToNextView(BuildContext context) {
-    Future.delayed(Duration(seconds: 5), () {
-      NavigationHelper.toOnboarding(context);
+    Future.delayed(const Duration(seconds: 5), () {
+      // Check if widget is still mounted before navigating
+      if (!mounted) return;
+      NavigationHelper.toOnboarding(context, replace: true);
     });
   }
 }

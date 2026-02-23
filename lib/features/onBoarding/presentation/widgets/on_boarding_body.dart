@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/custom_dots_indicator.dart';
-import 'package:meal_planning_app/features/Auth/presentation/pages/login/login_view.dart';
 import 'package:meal_planning_app/features/onBoarding/presentation/widgets/custom_page_view.dart';
-import 'package:get/get.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
@@ -75,11 +74,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   curve: Curves.easeIn,
                 );
               } else {
-                Get.to(
-                  () => LoginView(),
-                  transition: Transition.rightToLeft,
-                  duration: Duration(milliseconds: 500),
-                );
+                NavigationHelper.toLogin(context);
               }
             },
             text:

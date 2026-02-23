@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:meal_planning_app/core/navigation/navigation_sell.dart';
 import 'package:meal_planning_app/core/routes/app_routes.dart';
+import 'package:meal_planning_app/features/Auth/data/models/user_model.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/compelete_info/compelete_information_view.dart';
 import 'package:meal_planning_app/features/Auth/presentation/pages/login/login_view.dart';
+import 'package:meal_planning_app/features/home/presentation/pages/favorites/favorite_items_view.dart';
 import 'package:meal_planning_app/features/meal_planner/presentation/pages/plans_view/plan_view.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/fav_meals_view/fav_meals_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_categories_view/meal_categories_view.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_descroption/meal_description_view.dart';
+import 'package:meal_planning_app/features/meals/presentation/pages/meals_view/meals_view.dart';
 import 'package:meal_planning_app/features/onBoarding/presentation/on_boarding_view.dart';
 import 'package:meal_planning_app/features/splash/presentation/splash_view.dart';
 
 class RouteGenerator {
-  RouteGenerator._();
+  const RouteGenerator._();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -33,10 +37,13 @@ class RouteGenerator {
         );
 
       case AppRoutes.main:
-        return _buildRoute(NavigationSell(), settings: settings);
+        if (args is UserModel) {
+          return _buildRoute(NavigationSell(user: args), settings: settings);
+        }
+        return _errorRoute(settings);
 
       case AppRoutes.mealCategories:
-        return _buildRoute(MealCategoriesView(), settings: settings);
+        return _buildRoute(const MealCategoriesView(), settings: settings);
 
       case AppRoutes.mealDescription:
         if (args is MealModel) {
@@ -47,8 +54,22 @@ class RouteGenerator {
         }
         return _errorRoute(settings);
 
+      case AppRoutes.favorites:
+        return _buildRoute(const FavoriteItemsView(), settings: settings);
+
+      case AppRoutes.mealsView:
+        if (args is String) {
+          return _buildRoute(MealsView(categoryName: args), settings: settings);
+        }
+        return _errorRoute(settings);
+
+      case AppRoutes.favMeals:
+        if (args is UserModel) {
+          return _buildRoute(FavMealsView(user: args), settings: settings);
+        }
+        return _errorRoute(settings);
       case AppRoutes.mealPlanner:
-        return _buildRoute(PlanView(), settings: settings);
+        return _buildRoute(const PlanView(), settings: settings);
 
       default:
         return _errorRoute(settings);

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart' as getx;
-import 'package:meal_planning_app/features/meals/presentation/pages/meals_view/meals_view.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/features/meals/presentation/pages/meal_categories_view/widgets/meal_category_button.dart';
 
 class MealCategoriesList extends StatelessWidget {
@@ -57,10 +55,9 @@ class MealCategoriesList extends StatelessWidget {
       itemBuilder: (context, index) {
         return MealCategoryButton(
           onPressed: () {
-            Get.to(
-              () => MealsView(categoryName: categoryNameList[index]),
-              duration: const Duration(milliseconds: 500),
-              transition: getx.Transition.rightToLeft,
+            NavigationHelper.toMealsView(
+              context,
+              mealCategory: categoryNameList[index],
             );
           },
           categoryName: categoryNameList[index],

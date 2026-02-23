@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
 import 'package:meal_planning_app/core/widgets/custom_icon_button.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
@@ -38,7 +38,7 @@ class MealImageContainer extends StatelessWidget {
             buttonColor: Colors.white,
             iconColor: Colors.black,
             onPressed: () {
-              Get.back();
+              NavigationHelper.pop(context);
             },
           ),
         ),

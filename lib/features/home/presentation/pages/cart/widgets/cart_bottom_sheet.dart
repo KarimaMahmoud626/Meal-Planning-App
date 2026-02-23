@@ -1,13 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:meal_planning_app/core/utils/navigation_helper.dart';
 import 'package:meal_planning_app/core/utils/size_config.dart';
-import 'package:meal_planning_app/core/widgets/bottom_nav_bar.dart';
 import 'package:meal_planning_app/core/widgets/custom_buttons.dart';
 import 'package:meal_planning_app/core/widgets/space_widget.dart';
 import 'package:meal_planning_app/core/widgets/text_row.dart';
+import 'package:meal_planning_app/features/Auth/data/models/user_model.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_cubit.dart';
 import 'package:meal_planning_app/features/Auth/presentation/manager/cubit/auth_cubit/auth_state.dart';
 import 'package:meal_planning_app/features/home/presentation/manager/cubits/cart_cubit/cubit/cart_cubit.dart';
@@ -19,11 +18,13 @@ class CartBottomSheet extends StatelessWidget {
     this.totalCalories,
     this.isLoadded = true,
     this.progress,
+    required this.user,
   });
   final double? totalPrice;
   final double? totalCalories;
   final bool? isLoadded;
   final double? progress;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +65,10 @@ class CartBottomSheet extends StatelessWidget {
                                     animType: AnimType.rightSlide,
                                     title: 'Order Confirmed',
                                     btnOkOnPress:
-                                        () =>
-                                            Get.to(() => BottomNavContainer()),
+                                        () => NavigationHelper.toMain(
+                                          context,
+                                          user: user,
+                                        ),
                                   ).show();
                                   context.read<CartCubit>().removeAll();
                                 }
