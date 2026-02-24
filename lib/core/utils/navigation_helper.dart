@@ -120,7 +120,10 @@ class NavigationHelper {
     if (replace) {
       return Navigator.pushReplacementNamed(context, AppRoutes.mealPlanner);
     }
-    return Navigator.pushNamed(context, AppRoutes.mealPlanner);
+    return Navigator.of(
+      context,
+      rootNavigator: true,
+    ).pushNamed(AppRoutes.mealPlanner);
   }
 
   static void pop(BuildContext context, [dynamic result]) {

@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:meal_planning_app/core/constants/constants.dart';
+import 'package:meal_planning_app/core/di/dependency_injection_container.dart';
 import 'package:meal_planning_app/features/meal_planner/data/models/week_meal_plan_model.dart';
 import 'package:meal_planning_app/features/meal_planner/domain/repos/meal_planner_repo.dart';
 
@@ -17,7 +18,7 @@ class MealPlannerRepoImpl extends MealPlannerRepo {
       final planUrl = Uri.parse(
         'https://api.spoonacular.com/mealplanner/generate?timeFrame=week&targetCalories=$targetCalories&apiKey=$kSpoonAcularApiKey',
       );
-      http.Response response = await http.get(planUrl);
+      http.Response response = await getIt<http.Client>().get(planUrl);
       print('response: $response');
       if (response.statusCode != 200) {
         return Left(Exception('HTTP error ${response.statusCode}'));
@@ -37,9 +38,9 @@ class MealPlannerRepoImpl extends MealPlannerRepo {
   }
 
   Future<num> getUserTargetCalories() async {
-    final user = FirebaseAuth.instance.currentUser;
+    final user = getIt<FirebaseAuth>().currentUser;
     final snapshot =
-        await FirebaseFirestore.instance
+        await getIt<FirebaseFirestore>()
             .collection('users')
             .doc(user!.uid)
             .get();

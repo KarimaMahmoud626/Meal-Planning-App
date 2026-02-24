@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meal_planning_app/core/constants/constants.dart';
+import 'package:meal_planning_app/core/di/dependency_injection_container.dart';
 import 'package:meal_planning_app/features/Auth/data/models/user_model.dart';
 import 'package:meal_planning_app/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -17,9 +18,9 @@ class AuthRepoImpl extends AuthRepo {
     num? calorie,
   }) async {
     try {
-      final currentUser = FirebaseAuth.instance.currentUser!;
+      final currentUser = getIt<FirebaseAuth>().currentUser!;
       final uid = currentUser.uid;
-      CollectionReference users = FirebaseFirestore.instance.collection(
+      CollectionReference users = getIt<FirebaseFirestore>().collection(
         'users',
       );
 
@@ -49,7 +50,7 @@ class AuthRepoImpl extends AuthRepo {
     // Trigger the sign-in flow
     print('entering facebook sign in');
     try {
-      final LoginResult loginResult = await FacebookAuth.instance.login();
+      final LoginResult loginResult = await getIt<FacebookAuth>().login();
 
       // Create a credential from the access token
       final OAuthCredential facebookAuthCredential =
@@ -59,7 +60,7 @@ class AuthRepoImpl extends AuthRepo {
 
       // Once signed in, return the UserCredential
       return Right(
-        await FirebaseAuth.instance.signInWithCredential(
+        await getIt<FirebaseAuth>().signInWithCredential(
           facebookAuthCredential,
         ),
       );
@@ -73,7 +74,8 @@ class AuthRepoImpl extends AuthRepo {
     // Trigger the authentication flow
     print('entering google sign in');
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser =
+          await getIt<GoogleSignIn>().signIn();
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
@@ -87,7 +89,7 @@ class AuthRepoImpl extends AuthRepo {
       print('compelete google sign in');
       // Once signed in, return the UserCredential
       return Right(
-        await FirebaseAuth.instance.signInWithCredential(credential),
+        await getIt<FirebaseAuth>().signInWithCredential(credential),
       );
     } catch (e) {
       print('google error');
@@ -100,12 +102,12 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Exception, UserModel>> getUserData() async {
     print('repo_impl');
     try {
-      final currentUser = FirebaseAuth.instance.currentUser;
+      final currentUser = getIt<FirebaseAuth>().currentUser;
       if (currentUser == null) {
         return Left(Exception('No user logged in'));
       }
       final doc =
-          await FirebaseFirestore.instance
+          await getIt<FirebaseFirestore>()
               .collection('users')
               .doc(currentUser.uid)
               .get();
@@ -131,7 +133,7 @@ class AuthRepoImpl extends AuthRepo {
       final uid = user.uid;
       final userModel = UserModel(email: email, name: user.displayName);
       if (isNew) {
-        await FirebaseFirestore.instance.collection('users').doc(uid).set({
+        await getIt<FirebaseFirestore>().collection('users').doc(uid).set({
           kEmail: email,
           kName: user.displayName,
           kAge: 0,

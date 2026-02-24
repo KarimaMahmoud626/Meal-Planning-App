@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:meal_planning_app/core/di/dependency_injection_container.dart';
 import 'package:meal_planning_app/features/meals/data/models/meal_model.dart';
 import 'package:meal_planning_app/features/meals/domain/repos/suggested_meal_repo.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +18,7 @@ class SuggestedMealRepoImpl extends SuggestedMealRepo {
       final mealUrl = Uri.parse(
         'https://www.themealdb.com/api/json/v1/1/filter.php?c=$category',
       );
-      http.Response response = await http.get(mealUrl);
+      http.Response response = await getIt<http.Client>().get(mealUrl);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
         final meals = jsonData['meals'];
@@ -45,7 +46,7 @@ class SuggestedMealRepoImpl extends SuggestedMealRepo {
         final mealUrl = Uri.parse(
           'https://www.themealdb.com/api/json/v1/1/random.php?',
         );
-        http.Response response = await http.get(mealUrl);
+        http.Response response = await getIt<http.Client>().get(mealUrl);
         if (response.statusCode == 200) {
           final jsonData = jsonDecode(response.body);
           final meals = jsonData['meals'];
@@ -68,7 +69,7 @@ class SuggestedMealRepoImpl extends SuggestedMealRepo {
       final mealUrl = Uri.parse(
         'https://themealdb.com/api/json/v1/1/lookup.php?i=$id',
       );
-      http.Response response = await http.get(mealUrl);
+      http.Response response = await getIt<http.Client>().get(mealUrl);
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
         final meals = jsonData['meals'];
@@ -88,8 +89,8 @@ class SuggestedMealRepoImpl extends SuggestedMealRepo {
 
   @override
   Future<void> toggleLike(String mealId, bool isLiked) async {
-    final firestore = FirebaseFirestore.instance;
-    final user = FirebaseAuth.instance.currentUser;
+    final firestore = getIt<FirebaseFirestore>();
+    final user = getIt<FirebaseAuth>().currentUser;
     await firestore
         .collection('user')
         .doc(user!.uid)
